@@ -1,0 +1,17 @@
+{
+  "name": "ai-apps-dashboard",
+  "version": "1.0.0",
+  "private": true,
+  "description": "داشبورد تحلیل بازار پلتفرم‌های هوش مصنوعی ایران + اسکرپ نیمه‌خودکار کافه‌بازار/مایکت",
+  "main": "server.js",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0",
+    "express": "^4.19.2"
+  }
+}

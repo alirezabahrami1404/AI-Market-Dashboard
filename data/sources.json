@@ -1,0 +1,195 @@
+{
+  "platforms": [
+    {
+      "id": "Chatgpt",
+      "name": "Chatgpt",
+      "type": "خارجی"
+    },
+    {
+      "id": "گپ جی پی تی",
+      "name": "گپ جی پی تی",
+      "type": "داخلی"
+    },
+    {
+      "id": "ویرا",
+      "name": "ویرا",
+      "type": "داخلی"
+    },
+    {
+      "id": "Gemini",
+      "name": "Gemini",
+      "type": "خارجی"
+    },
+    {
+      "id": "روبو",
+      "name": "روبو",
+      "type": "داخلی"
+    },
+    {
+      "id": "DeepSeek",
+      "name": "DeepSeek",
+      "type": "خارجی"
+    },
+    {
+      "id": "زی گپ",
+      "name": "زی گپ",
+      "type": "داخلی"
+    },
+    {
+      "id": "آتنا",
+      "name": "آتنا",
+      "type": "داخلی"
+    },
+    {
+      "id": "هوشنگ",
+      "name": "هوشنگ",
+      "type": "داخلی"
+    },
+    {
+      "id": "دونا",
+      "name": "دونا",
+      "type": "داخلی"
+    },
+    {
+      "id": "Grok",
+      "name": "Grok",
+      "type": "خارجی"
+    },
+    {
+      "id": "یار",
+      "name": "یار",
+      "type": "داخلی"
+    },
+    {
+      "id": "هوشی",
+      "name": "هوشی",
+      "type": "داخلی"
+    },
+    {
+      "id": "آوا",
+      "name": "آوا",
+      "type": "داخلی"
+    },
+    {
+      "id": "نوباکس",
+      "name": "نوباکس",
+      "type": "داخلی"
+    },
+    {
+      "id": "بوف",
+      "name": "بوف",
+      "type": "داخلی"
+    },
+    {
+      "id": "اکیان",
+      "name": "اکیان",
+      "type": "داخلی"
+    },
+    {
+      "id": "اول AI",
+      "name": "اول AI",
+      "type": "داخلی"
+    },
+    {
+      "id": "یارا",
+      "name": "یارا",
+      "type": "داخلی"
+    },
+    {
+      "id": "نوروکیس",
+      "name": "نوروکیس",
+      "type": "داخلی"
+    },
+    {
+      "id": "Claude",
+      "name": "Claude",
+      "type": "خارجی"
+    }
+  ],
+  "sources": {
+    "Chatgpt": {
+      "bazaar": "https://cafebazaar.ir/app/com.openai.chatgpt",
+      "myket": "https://myket.ir/app/com.openai.chatgpt"
+    },
+    "گپ جی پی تی": {
+      "bazaar": "https://cafebazaar.ir/app/app.gapgpt.twa",
+      "myket": "https://myket.ir/app/app.gapgpt.twa"
+    },
+    "ویرا": {
+      "bazaar": "https://cafebazaar.ir/app/ai.ivira.app",
+      "myket": "https://myket.ir/app/ai.ivira.app"
+    },
+    "Gemini": {
+      "bazaar": "https://cafebazaar.ir/app/com.google.android.apps.bard",
+      "myket": "https://myket.ir/app/com.google.android.apps.bard"
+    },
+    "روبو": {
+      "bazaar": "https://cafebazaar.ir/app/ir.roboo.pwa",
+      "myket": "https://myket.ir/app/ir.roboo.pwa"
+    },
+    "DeepSeek": {
+      "bazaar": null,
+      "myket": "https://myket.ir/app/com.deepseek.chat"
+    },
+    "زی گپ": {
+      "bazaar": "https://cafebazaar.ir/app/com.smilinno.zigap",
+      "myket": "https://myket.ir/app/com.smilinno.zigap"
+    },
+    "آتنا": {
+      "bazaar": "https://cafebazaar.ir/app/com.tapsage.athena.domestic",
+      "myket": "https://myket.ir/app/com.tapsage.athena.domestic"
+    },
+    "هوشنگ": {
+      "bazaar": "https://cafebazaar.ir/app/ai.hooshang.app",
+      "myket": "https://myket.ir/app/ai.hooshang.app"
+    },
+    "دونا": {
+      "bazaar": "https://cafebazaar.ir/app/ai.doona.app",
+      "myket": "https://myket.ir/app/ai.doona.app"
+    },
+    "Grok": {
+      "bazaar": null,
+      "myket": "https://myket.ir/app/ai.x.grok"
+    },
+    "یار": {
+      "bazaar": "https://cafebazaar.ir/app/ir.yarai.chat",
+      "myket": "https://myket.ir/app/ir.yarai.chat"
+    },
+    "هوشی": {
+      "bazaar": "https://cafebazaar.ir/app/app.project.hooshi",
+      "myket": null
+    },
+    "آوا": {
+      "bazaar": null,
+      "myket": null
+    },
+    "نوباکس": {
+      "bazaar": null,
+      "myket": null
+    },
+    "بوف": {
+      "bazaar": "https://cafebazaar.ir/app/com.zharfa.boof_android_app",
+      "myket": "https://myket.ir/app/com.zharfa.boof_android_app"
+    },
+    "اکیان": {
+      "bazaar": "https://cafebazaar.ir/app/app.okian.ai",
+      "myket": "https://myket.ir/app/app.okian.ai"
+    },
+    "اول AI": {
+      "bazaar": null,
+      "myket": null
+    },
+    "یارا": {
+      "bazaar": null,
+      "myket": null
+    },
+    "نوروکیس": {
+      "bazaar": null,
+      "myket": null
+    },
+    "Claude": {
+      "bazaar": "https://cafebazaar.ir/app/com.anthropic.claude",
+      "myket": "https://myket.ir/app/com.anthropic.claude"
+    }
+  }
+}
