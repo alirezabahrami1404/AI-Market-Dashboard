@@ -18,16 +18,17 @@
 body.dark{--bg:#120f1e;--card:#1c1730;--ink:#f1edfc;--muted:#a79fc4;--line:#332a4d;--input:#241d3d;--shadow:0 10px 32px rgba(0,0,0,.35)}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:'peyda-num','peyda',Vazirmatn,Tahoma,Arial,sans-serif;font-weight:300;font-feature-settings:"ss01" on}
 .container{max-width:1500px;margin:auto;padding:24px}button,select,input{font-family:inherit}
-.header{background:linear-gradient(120deg,#1e1240 0%,#4c1d95 45%,#7c3aed 75%,#06b6d4 130%);color:#fff;border-radius:22px;padding:26px 30px;margin-bottom:18px;position:relative;overflow:hidden}
-.header::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 85% -20%,rgba(255,255,255,.25),transparent 55%)}
-.header h1{margin:0 0 6px;font-size:27px;font-family:'peyda-num','peyda',Vazirmatn,sans-serif;font-weight:500;letter-spacing:.5px;position:relative}
-.header p{margin:0;color:#e5ddff;font-size:11.5px;position:relative}
-.actions{position:absolute;left:20px;top:18px;display:flex;gap:7px;z-index:2}.btn{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:9px;padding:7px 10px;cursor:pointer;font-size:10px;font-weight:600;transition:transform .12s ease,box-shadow .12s ease}.btn:hover{transform:translateY(-1px);box-shadow:0 6px 14px rgba(76,29,149,.18)}.actions .btn{background:#ffffff1c;color:#fff;border-color:#ffffff45;backdrop-filter:blur(2px)}.primary{background:linear-gradient(120deg,var(--accent),var(--accent2))!important;color:#fff!important;border-color:transparent!important}
+.header{background:linear-gradient(120deg,#1e1240 0%,#4c1d95 45%,#7c3aed 75%,#06b6d4 130%);color:#fff;border-radius:22px;padding:26px 30px;margin-bottom:18px;position:relative;overflow:hidden;display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
+.header::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 85% -20%,rgba(255,255,255,.25),transparent 55%);pointer-events:none}
+.header-text{position:relative;z-index:1;min-width:0;flex:1}
+.header h1{margin:0 0 6px;font-size:27px;font-family:'peyda-num','peyda',Vazirmatn,sans-serif;font-weight:500;letter-spacing:.5px}
+.header p{margin:0;color:#e5ddff;font-size:11.5px}
+.actions{position:relative;z-index:2;display:flex;flex-wrap:wrap;gap:7px;flex:0 1 520px;justify-content:flex-start}.btn{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:9px;padding:7px 10px;cursor:pointer;font-size:10px;font-weight:600;transition:transform .12s ease,box-shadow .12s ease}.btn:hover{transform:translateY(-1px);box-shadow:0 6px 14px rgba(76,29,149,.18)}.actions .btn{background:#ffffff1c;color:#fff;border-color:#ffffff45;backdrop-filter:blur(2px)}.primary{background:linear-gradient(120deg,var(--accent),var(--accent2))!important;color:#fff!important;border-color:transparent!important}
 .filters{display:grid;grid-template-columns:1fr 1.8fr 1fr 1fr .9fr;gap:10px;margin-bottom:16px}
 .filter,.kpi,.card{background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow)}.filter{border-radius:14px;padding:10px 12px;min-width:0}.filter>label{display:block;font-size:10px;color:var(--muted);margin-bottom:6px;font-weight:600}
 select{width:100%;border:0;background:var(--input);color:var(--ink);border-radius:8px;padding:9px;outline:0}
 .picker{position:relative}.pickerBtn{width:100%;min-height:38px;border:0;background:var(--input);color:var(--ink);border-radius:8px;text-align:right;padding:8px 10px;cursor:pointer}
-.menu{display:none;position:absolute;z-index:50;right:0;left:0;top:70px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px;max-height:340px;overflow:auto;box-shadow:0 18px 40px #0002}.menu.open{display:block}.tools{display:flex;gap:5px;margin-bottom:7px}.tools .btn{flex:1;font-size:9px}
+.menu{display:none;position:absolute;z-index:50;right:0;left:0;top:calc(100% + 6px);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px;max-height:340px;overflow:auto;box-shadow:0 18px 40px #0002}.menu.open{display:block}.tools{display:flex;gap:5px;margin-bottom:7px}.tools .btn{flex:1;font-size:9px}
 .check{display:flex;align-items:center;gap:7px;padding:6px;border-radius:7px;font-size:10px;cursor:pointer}.check:hover{background:var(--input)}.check input{accent-color:var(--accent)}
 .kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:11px;margin-bottom:16px}
 .kpi{border-radius:15px;padding:15px 15px 15px 17px;border-inline-start:4px solid var(--kc,var(--accent));position:relative;overflow:hidden}
@@ -37,12 +38,12 @@ select{width:100%;border:0;background:var(--input);color:var(--ink);border-radiu
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.card{border-radius:17px;padding:12px;min-width:0;border-top:3px solid transparent;background-image:linear-gradient(var(--card),var(--card)),linear-gradient(120deg,var(--accent),var(--accent2));background-origin:border-box;background-clip:padding-box,border-box}.full{grid-column:1/-1}.head{display:flex;justify-content:space-between;align-items:center;gap:8px}.card h2{font-size:13px;margin:4px 5px 7px;font-weight:700}.exports{display:flex;gap:4px;flex-wrap:wrap}.exports .btn{font-size:8px;padding:4px 6px}.chart{height:390px}.small{height:340px}
 .note{font-size:9px;color:var(--muted);padding:7px 3px 16px}.toast{display:none;position:fixed;left:20px;bottom:20px;z-index:100;background:linear-gradient(120deg,#1e1240,#4c1d95);color:#fff;padding:10px 13px;border-radius:10px;font-size:10px;box-shadow:0 10px 26px rgba(0,0,0,.3)}
 .login{position:fixed;inset:0;z-index:200;background:linear-gradient(135deg,#1e1240,#0b0f24);display:flex;align-items:center;justify-content:center}.loginBox{width:min(390px,92vw);background:#fff;color:#172033;border-radius:20px;padding:27px}.loginBox h2{font-family:'peyda-num','peyda',Vazirmatn,sans-serif;font-weight:500;font-size:22px}.loginBox input{width:100%;padding:11px;border:1px solid #e4e8ef;border-radius:9px;margin:5px 0 10px}.loginBox label{font-size:10px}.loginBox p{font-size:10px;color:#687386}.err{color:#dc2626;font-size:10px;min-height:18px}.hidden{display:none!important}
-@media(max-width:1050px){.filters{grid-template-columns:repeat(3,1fr)}.kpis{grid-template-columns:repeat(3,1fr)}}@media(max-width:650px){.container{padding:11px}.filters,.kpis,.grid{grid-template-columns:1fr}.full{grid-column:auto}.header h1{font-size:19px}.actions{position:static;margin-top:13px}}
+@media(max-width:1050px){.filters{grid-template-columns:repeat(3,1fr)}.kpis{grid-template-columns:repeat(3,1fr)}.header{flex-wrap:wrap}.actions{flex:1 1 100%}}@media(max-width:650px){.container{padding:11px}.filters,.kpis,.grid{grid-template-columns:1fr}.full{grid-column:auto}.header h1{font-size:19px}}
 </style></head>
 <body>
 <div id="login" class="login"><div class="loginBox"><h2>ورود به داشبورد</h2><p>تحلیل بازار پلتفرم‌های هوش مصنوعی ایران</p><label>نام کاربری</label><input id="user"><label>رمز عبور</label><input id="pass" type="password"><div id="err" class="err"></div><button class="btn primary" style="width:100%;padding:11px" onclick="login()">ورود</button></div></div>
 <div id="app" class="hidden"><div class="container">
-<div class="header"><div class="actions"><button class="btn" onclick="theme()">☀️ / 🌙</button><button class="btn primary" id="scrapeBtn" onclick="triggerScrape()">🔄 دریافت خودکار از فروشگاه‌ها</button><button class="btn" id="upd" onclick="updateData()">↻ بارگذاری JSON</button><input type="file" id="updFile" accept="application/json,.json" class="hidden" onchange="handleUpdateFile(event)"><button class="btn" id="impPeriod" onclick="triggerImportPeriod()">📥 وارد کردن دوره از فایل</button><input type="file" id="periodFile" accept="application/json,.json" class="hidden" onchange="handlePeriodImport(event)"><button class="btn primary" onclick="openMonthly()">➕ ثبت داده دوره جدید</button><button class="btn" onclick="downloadData()">⬇ دانلود دیتابیس</button></div><h1>داشبورد تحلیل بازار پلتفرم‌های هوش مصنوعی در ایران</h1><p>تحلیل نصب، رشد و سهم بازار | آذر ۱۴۰۴ تا مرداد ۱۴۰۵</p></div>
+<div class="header"><div class="header-text"><h1>داشبورد تحلیل بازار پلتفرم‌های هوش مصنوعی در ایران</h1><p>تحلیل نصب، رشد و سهم بازار | آذر ۱۴۰۴ تا مرداد ۱۴۰۵</p></div><div class="actions"><button class="btn" onclick="theme()">☀️ / 🌙</button><button class="btn primary" id="scrapeBtn" onclick="triggerScrape()">🔄 دریافت خودکار از فروشگاه‌ها</button><button class="btn" id="upd" onclick="updateData()">↻ بارگذاری JSON</button><input type="file" id="updFile" accept="application/json,.json" class="hidden" onchange="handleUpdateFile(event)"><button class="btn" id="impPeriod" onclick="triggerImportPeriod()">📥 وارد کردن دوره از فایل</button><input type="file" id="periodFile" accept="application/json,.json" class="hidden" onchange="handlePeriodImport(event)"><button class="btn primary" onclick="openMonthly()">➕ ثبت داده دوره جدید</button><button class="btn" onclick="downloadData()">⬇ دانلود دیتابیس</button></div></div>
 <div id="fatalErr" class="hidden" style="background:#fee2e2;border:1px solid #fca5a5;color:#991b1b;border-radius:12px;padding:12px 15px;margin-bottom:14px;font-size:11px;display:flex;align-items:center;gap:10px"><span id="fatalErrMsg" style="flex:1"></span><button class="btn" onclick="loadDataAndInit()">تلاش مجدد</button></div>
 <div id="monthly" class="login hidden"><div class="loginBox" style="width:min(920px,94vw);max-height:88vh;overflow:auto;text-align:right">
   <h2>ثبت داده دوره جدید</h2>
@@ -60,7 +61,7 @@ select{width:100%;border:0;background:var(--input);color:var(--ink);border-radiu
 <div class="filter picker"><label>پلتفرم‌ها</label><button id="pickerBtn" class="pickerBtn" onclick="toggleMenu()">همه پلتفرم‌ها</button><div id="menu" class="menu"><div class="tools"><button class="btn primary" onclick="allPlatforms()">انتخاب همه</button><button class="btn" onclick="nonePlatforms()">پاک کردن</button></div><label class="check"><input id="all" type="checkbox" checked onchange="allToggle()"> همه پلتفرم‌ها</label><div id="checks"></div></div></div>
 <div class="filter"><label>مارکت</label><select id="store"><option value="all">هر دو مارکت</option><option value="bazaar">کافه‌بازار</option><option value="myket">مایکت</option></select></div>
 <div class="filter"><label>نوع پلتفرم</label><select id="type"><option value="all">همه</option><option value="داخلی">داخلی</option><option value="خارجی">خارجی</option></select></div>
-<div class="filter"><label>تعداد پلتفرم در نمودار</label><select id="topn"><option value="5">۵</option><option value="10" selected>۱۰</option><option value="15">۱۵</option><option value="all" selected>همه</option></select></div>
+<div class="filter"><label>تعداد پلتفرم در نمودار</label><select id="topn"><option value="5">۵</option><option value="10">۱۰</option><option value="15">۱۵</option><option value="all" selected>همه</option></select></div>
 </div>
 <div class="kpis">
 <div class="kpi"><div class="label">کل نصب تجمعی بازار</div><div class="value" id="kt">—</div><div class="sub">دوره انتخاب‌شده</div></div>
@@ -85,23 +86,53 @@ select{width:100%;border:0;background:var(--input);color:var(--ink);border-radiu
 <script>
 let DATA={periods:[],platforms:[],data:[],sources:{}};
 const $=id=>document.getElementById(id);
+const APP_BASE=(pathname=>{
+  const p=pathname||'';
+  if(p==='/marketdashboard'||p.startsWith('/marketdashboard/'))return '/marketdashboard';
+  return '';
+})(window.location.pathname);
+const api=path=>APP_BASE+path;
 // محاسبه مجدد رشد از روی داده‌های خام: رشد هر دوره = نصب جدید همان دوره / نصب تجمعی دوره قبل.
 function computeGrowth(){DATA.data.forEach(d=>{const prev=DATA.data.find(x=>x.platform===d.platform&&x.period_idx===d.period_idx-1);['total','bazaar','myket'].forEach(k=>{const pk=k+'_point';d[k+'_growth']=(d.period_idx>0&&prev&&d[pk]!=null&&prev[k]!=null&&Number(prev[k])>0)?Number(d[pk])/Number(prev[k]):null})})}
 
-const fa=s=>String(s).replace(/\d/g,d=>'۰۱۲۳۴۵۶۷۸۹'[d]);
-const full=n=>Number(n||0).toLocaleString('fa-IR');
-const approx=n=>{if(n==null||!Number.isFinite(Number(n)))return'—';n=Number(n);if(Math.abs(n)>=1e6)return fa((n/1e6).toFixed(1))+' میلیون';if(Math.abs(n)>=1e3)return fa((n/1e3).toFixed(1))+' هزار';return fa(n.toFixed(1))};
-const percent=n=>n==null||!Number.isFinite(Number(n))?'—':fa((n*100).toFixed(2))+'٪';
+const FA_DIGITS='۰۱۲۳۴۵۶۷۸۹';
+const fa=s=>String(s).replace(/\d/g,d=>FA_DIGITS[d]);
+function parseNum(v){
+  if(v==null||v==='')return null;
+  const s=String(v).replace(/[۰-۹]/g,d=>String(FA_DIGITS.indexOf(d))).replace(/[٬،,]/g,'');
+  const n=Number(s);
+  return Number.isFinite(n)?n:null;
+}
+function full(n,frac){
+  if(n==null||n===''||!Number.isFinite(Number(n)))return'—';
+  n=Number(n);
+  const d=frac==null?0:frac;
+  return fa(n.toLocaleString('en-US',{maximumFractionDigits:d,minimumFractionDigits:d})).replace(/,/g,'٬').replace(/\./g,'٫');
+}
+const percent=n=>n==null||!Number.isFinite(Number(n))?'—':full(n*100,2)+'٪';
+const legendFa={type:'scroll',bottom:2,pageFormatter:p=>'\u2066'+fa(p.current)+' / '+fa(p.total)+'\u2069'};
 const PALETTE=['#7c3aed','#06b6d4','#f59e0b','#ec4899','#10b981','#3b82f6','#f97316','#a855f7','#14b8a6','#e11d48','#84cc16','#6366f1','#eab308','#0ea5e9','#d946ef'];
 const platformColor=id=>{let i=DATA.platforms.findIndex(p=>p.id===id);return PALETTE[(i<0?0:i)%PALETTE.length]};
 const CHART_FONT="'peyda-num','peyda',Vazirmatn,Tahoma,sans-serif";
-echarts.registerTheme?.('creative-light',{color:PALETTE,textStyle:{fontFamily:CHART_FONT,color:'#332a4d'},title:{textStyle:{fontFamily:CHART_FONT,color:'#1d1533'}},legend:{textStyle:{fontFamily:CHART_FONT,color:'#332a4d'}},tooltip:{textStyle:{fontFamily:CHART_FONT}},categoryAxis:{axisLine:{lineStyle:{color:'#cdc4e6'}},axisLabel:{fontFamily:CHART_FONT,color:'#5c5578'},splitLine:{lineStyle:{color:'#eee8fa'}}},valueAxis:{axisLine:{lineStyle:{color:'#cdc4e6'}},axisLabel:{fontFamily:CHART_FONT,color:'#5c5578'},splitLine:{lineStyle:{color:'#eee8fa'}}}});
-echarts.registerTheme?.('creative-dark',{color:PALETTE,textStyle:{fontFamily:CHART_FONT,color:'#f2f0f8'},title:{textStyle:{fontFamily:CHART_FONT,color:'#ffffff'}},legend:{textStyle:{fontFamily:CHART_FONT,color:'#f2f0f8'}},tooltip:{textStyle:{fontFamily:CHART_FONT}},categoryAxis:{axisLine:{lineStyle:{color:'#4d4570'}},axisLabel:{fontFamily:CHART_FONT,color:'#d8d4e8'},splitLine:{lineStyle:{color:'#332a4d'}}},valueAxis:{axisLine:{lineStyle:{color:'#4d4570'}},axisLabel:{fontFamily:CHART_FONT,color:'#d8d4e8'},splitLine:{lineStyle:{color:'#332a4d'}}}});
+echarts.registerTheme?.('creative-light',{color:PALETTE,textStyle:{fontFamily:CHART_FONT,color:'#332a4d'},title:{textStyle:{fontFamily:CHART_FONT,color:'#1d1533'}},legend:{textStyle:{fontFamily:CHART_FONT,color:'#332a4d'}},tooltip:{textStyle:{fontFamily:CHART_FONT}},categoryAxis:{axisLine:{lineStyle:{color:'#cdc4e6'}},axisLabel:{fontFamily:CHART_FONT,color:'#5c5578'},splitLine:{lineStyle:{color:'#eee8fa'}}},valueAxis:{axisLine:{lineStyle:{color:'#cdc4e6'}},axisLabel:{fontFamily:CHART_FONT,color:'#5c5578',formatter:v=>full(v)},splitLine:{lineStyle:{color:'#eee8fa'}}}});
+echarts.registerTheme?.('creative-dark',{color:PALETTE,textStyle:{fontFamily:CHART_FONT,color:'#f2f0f8'},title:{textStyle:{fontFamily:CHART_FONT,color:'#ffffff'}},legend:{textStyle:{fontFamily:CHART_FONT,color:'#f2f0f8'}},tooltip:{textStyle:{fontFamily:CHART_FONT}},categoryAxis:{axisLine:{lineStyle:{color:'#4d4570'}},axisLabel:{fontFamily:CHART_FONT,color:'#d8d4e8'},splitLine:{lineStyle:{color:'#332a4d'}}},valueAxis:{axisLine:{lineStyle:{color:'#4d4570'}},axisLabel:{fontFamily:CHART_FONT,color:'#d8d4e8',formatter:v=>full(v)},splitLine:{lineStyle:{color:'#332a4d'}}}});
 function currentTheme(){return document.body.classList.contains('dark')?'creative-dark':'creative-light'}
 let charts={}, selected=new Set();
-function init(){DATA.periods.forEach((p,i)=>$('period').add(new Option(p,i)));$('period').value=DATA.periods.length-1;buildChecks();['period','store','type','topn'].forEach(x=>$(x).addEventListener('change',render));render()}
+function resizeAll(){Object.values(charts).forEach(c=>{if(c&&typeof c.resize==='function')c.resize();else if(c&&typeof c.reflow==='function')c.reflow()})}
+function init(){
+  const period=$('period');period.innerHTML='';
+  DATA.periods.forEach((p,i)=>period.add(new Option(p,i)));
+  period.value=DATA.periods.length-1;
+  buildChecks();
+  if(!init.bound){
+    ['period','store','type','topn'].forEach(x=>$(x).addEventListener('change',render));
+    window.addEventListener('resize',resizeAll);
+    init.bound=true;
+  }
+  render();
+}
 function buildChecks(){let c=$('checks');c.innerHTML='';DATA.platforms.forEach(p=>{let l=document.createElement('label');l.className='check';l.innerHTML='<input type="checkbox" checked data-id="'+p.id+'"> '+p.name;l.querySelector('input').onchange=e=>{e.target.checked?selected.add(p.id):selected.delete(p.id);syncChecks();render()};c.appendChild(l)});syncChecks()}
-function syncChecks(){let a=selected.size===DATA.platforms.length;$('all').checked=a;$('pickerBtn').textContent=a?'همه پلتفرم‌ها':selected.size+' پلتفرم انتخاب شده';document.querySelectorAll('#checks input').forEach(x=>x.checked=selected.has(x.dataset.id))}
+function syncChecks(){let a=selected.size===DATA.platforms.length;$('all').checked=a;$('pickerBtn').textContent=a?'همه پلتفرم‌ها':fa(selected.size)+' پلتفرم انتخاب شده';document.querySelectorAll('#checks input').forEach(x=>x.checked=selected.has(x.dataset.id))}
 function allPlatforms(){selected=new Set(DATA.platforms.map(p=>p.id));syncChecks();render()}
 function nonePlatforms(){selected.clear();syncChecks();render()}
 function allToggle(){$('all').checked?allPlatforms():nonePlatforms()}
@@ -117,23 +148,23 @@ async function exportIt(chart,title,type,transparent){if(type==='xlsx'){let wb=n
 function render(){let i=+$('period').value,f=field(),r=rows(),cur=r.filter(d=>d.period_idx===i&&d[f]!=null),total=cur.reduce((a,d)=>a+d[f],0),point=cur.reduce((a,d)=>a+(d[f+'_point']||0),0),prev=i?market(i-1,f):0,g=prev?total/prev-1:null,top=topRows(),fast=[...cur].filter(d=>d[f+'_growth']!=null).sort((a,b)=>b[f+'_growth']-a[f+'_growth'])[0];$('kt').textContent=full(total);$('kp').textContent=full(point);$('kg').textContent=percent(g);$('ktop').textContent=top[0]?.name||'—';$('kfast').textContent=fast?.name||'—';
 let ids=top.map(d=>d.platform),names=ids.map(id=>DATA.platforms.find(p=>p.id===id)?.name||id);
 let source=[['دوره',...ids]];DATA.periods.forEach((p,j)=>source.push([p,...ids.map(id=>r.find(d=>d.platform===id&&d.period_idx===j)?.[f]??null)]));
-kill('cum');charts.cum=echarts.init($('cum'),currentTheme());charts.cum.setOption({tooltip:{trigger:'axis'},legend:{type:'scroll',bottom:2},dataset:{source},grid:{left:65,right:25,top:35,bottom:55},xAxis:{type:'category'},yAxis:{type:'value',name:'نصب تجمعی'},series:ids.map((id,j)=>({name:names[j],type:'line',smooth:true,showSymbol:true,encode:{x:0,y:j+1}}))});exportBtns('ecum',charts.cum,'روند نصب تجمعی');charts.ecumpie=echarts.init($('ecumpiechart'),currentTheme());{let dk=document.body.classList.contains('dark'),lbl=dk?'#f2f0f8':'#332a4d',ln=dk?'#5c5578':'#cdc4e6';charts.ecumpie.setOption({tooltip:{trigger:'item',formatter:p=>p.name+'<br>'+full(p.value)+' ('+Number(p.percent).toFixed(2)+'٪)'},legend:{type:'scroll',bottom:2,textStyle:{color:lbl}},series:[{type:'pie',radius:['35%','70%'],avoidLabelOverlap:true,label:{color:lbl,fontFamily:CHART_FONT},labelLine:{lineStyle:{color:ln}},itemStyle:{borderColor:dk?'#1c1730':'#fff',borderWidth:2},data:top.map(d=>({name:d.name,value:Number(d[f])||0}))}]});}exportBtns('ecumpie',charts.ecumpie,'ترکیب نصب تجمعی');
+kill('cum');charts.cum=echarts.init($('cum'),currentTheme());charts.cum.setOption({tooltip:{trigger:'axis',valueFormatter:v=>full(v)},legend:legendFa,dataset:{source},grid:{left:80,right:25,top:35,bottom:55},xAxis:{type:'category'},yAxis:{type:'value',name:'نصب تجمعی',axisLabel:{formatter:v=>full(v)}},series:ids.map((id,j)=>({name:names[j],type:'line',smooth:true,showSymbol:true,encode:{x:0,y:j+1}}))});exportBtns('ecum',charts.cum,'روند نصب تجمعی');kill('ecumpie');charts.ecumpie=echarts.init($('ecumpiechart'),currentTheme());{let dk=document.body.classList.contains('dark'),lbl=dk?'#f2f0f8':'#332a4d',ln=dk?'#5c5578':'#cdc4e6';charts.ecumpie.setOption({tooltip:{trigger:'item',formatter:p=>p.name+'<br>'+full(p.value)+' ('+full(p.percent,2)+'٪)'},legend:{...legendFa,textStyle:{color:lbl}},series:[{type:'pie',radius:['35%','70%'],avoidLabelOverlap:true,label:{color:lbl,fontFamily:CHART_FONT,formatter:p=>p.name},labelLine:{lineStyle:{color:ln}},itemStyle:{borderColor:dk?'#1c1730':'#fff',borderWidth:2},data:top.map(d=>({name:d.name,value:Number(d[f])||0}))}]});}exportBtns('ecumpie',charts.ecumpie,'ترکیب نصب تجمعی');
 kill('point');charts.point=echarts.init($('point'),currentTheme());
 const pointPeriods=DATA.periods;
 const pointSeries=ids.map((id,j)=>({name:names[j],type:'bar',stack:'installs',barMaxWidth:34,emphasis:{focus:'series'},data:pointPeriods.map((p,k)=>{let d=r.find(x=>x.platform===id&&x.period_idx===k);return d&&d[f+'_point']!=null?Number(d[f+'_point']):0})}));
-charts.point.setOption({animation:true,tooltip:{trigger:'axis',axisPointer:{type:'shadow'},formatter:function(params){let total=0,html='<b>'+params[0].axisValue+'</b><br>';params.forEach(function(x){if(Number(x.value)!==0){total+=Number(x.value);html+=x.marker+' '+x.seriesName+': '+full(x.value)+'<br>';}});html+='<hr style="margin:5px 0;border:0;border-top:1px solid #ddd"><b>جمع نصب جدید: '+full(total)+'</b>';return html;}},legend:{type:'scroll',orient:'horizontal',bottom:0,left:10,right:10},grid:{left:95,right:35,top:25,bottom:78,containLabel:true},xAxis:{type:'value',name:'نصب جدید',nameLocation:'middle',nameGap:32,axisLabel:{formatter:v=>full(v)},splitLine:{show:true}},yAxis:{type:'category',data:pointPeriods,axisLabel:{fontSize:11,margin:12}},series:pointSeries});exportBtns('epoint',charts.point,'نصب جدید در هر دوره');
-kill('growth');const growthPeriods=DATA.periods.slice(1);charts.growth=echarts.init($('growth'),currentTheme());charts.growth.setOption({tooltip:{trigger:'axis',valueFormatter:v=>fa(Number(v).toFixed(2))+'٪'},legend:{type:'scroll',bottom:2},grid:{left:60,right:25,top:35,bottom:55},xAxis:{type:'category',data:growthPeriods},yAxis:{type:'value',name:'رشد (%)',axisLabel:{formatter:v=>fa(Number(v).toFixed(2))+'٪'}},series:ids.map((id,j)=>({name:names[j],type:'line',smooth:true,showSymbol:true,data:growthPeriods.map((p,k)=>{let idx=k+1,d=r.find(x=>x.platform===id&&x.period_idx===idx),prev=r.find(x=>x.platform===id&&x.period_idx===idx-1);return d&&prev&&Number(prev[f])>0?Number(d[f+'_point'])/Number(prev[f])*100:null})}))});exportBtns('egrowth',charts.growth,'رشد پلتفرم‌ها');
+charts.point.setOption({animation:true,tooltip:{trigger:'axis',axisPointer:{type:'shadow'},formatter:function(params){let total=0,html='<b>'+params[0].axisValue+'</b><br>';params.forEach(function(x){if(Number(x.value)!==0){total+=Number(x.value);html+=x.marker+' '+x.seriesName+': '+full(x.value)+'<br>';}});html+='<hr style="margin:5px 0;border:0;border-top:1px solid #ddd"><b>جمع نصب جدید: '+full(total)+'</b>';return html;}},legend:{...legendFa,orient:'horizontal',bottom:0,left:10,right:10},grid:{left:95,right:35,top:25,bottom:78,containLabel:true},xAxis:{type:'value',name:'نصب جدید',nameLocation:'middle',nameGap:36,axisLabel:{formatter:v=>full(v)},splitLine:{show:true}},yAxis:{type:'category',data:pointPeriods,axisLabel:{fontSize:11,margin:12}},series:pointSeries});exportBtns('epoint',charts.point,'نصب جدید در هر دوره');
+kill('growth');const growthPeriods=DATA.periods.slice(1);charts.growth=echarts.init($('growth'),currentTheme());charts.growth.setOption({tooltip:{trigger:'axis',valueFormatter:v=>full(v,2)+'٪'},legend:legendFa,grid:{left:70,right:25,top:35,bottom:55},xAxis:{type:'category',data:growthPeriods},yAxis:{type:'value',name:'رشد (٪)',axisLabel:{formatter:v=>full(v)+'٪'}},series:ids.map((id,j)=>({name:names[j],type:'line',smooth:true,showSymbol:true,data:growthPeriods.map((p,k)=>{let idx=k+1,d=r.find(x=>x.platform===id&&x.period_idx===idx),prev=r.find(x=>x.platform===id&&x.period_idx===idx-1);return d&&prev&&Number(prev[f])>0?Number(d[f+'_point'])/Number(prev[f])*100:null})}))});exportBtns('egrowth',charts.growth,'رشد پلتفرم‌ها');
 let treeChildren=top.map(d=>({id:(d.type==='داخلی'?'domestic':'foreign')+'-'+d.platform,name:d.name,parent:d.type==='داخلی'?'domestic':'foreign',value:Number(d[f])||0}));
 let domVal=treeChildren.filter(x=>x.parent==='domestic').reduce((a,x)=>a+x.value,0),forVal=treeChildren.filter(x=>x.parent==='foreign').reduce((a,x)=>a+x.value,0);
 treeChildren.forEach(c=>c.color=platformColor(c.id.replace(/^(domestic|foreign)-/,'')));
 let tree=[{id:'domestic',name:'داخلی',value:domVal,color:'#7c3aed'},{id:'foreign',name:'خارجی',value:forVal,color:'#06b6d4'},...treeChildren];
-if(window.Highcharts&&Highcharts.chart){Highcharts.chart('share',{chart:{backgroundColor:'transparent',style:{fontFamily:'peyda-num, peyda, Vazirmatn'}},colors:PALETTE,title:{text:null},credits:{enabled:false},tooltip:{pointFormatter:function(){return '<b>'+this.name+'</b>: '+full(this.value)}},series:[{type:'treemap',layoutAlgorithm:'squarified',allowTraversingTree:true,levels:[{level:1,dataLabels:{enabled:false}},{level:2,dataLabels:{enabled:true,format:'{point.name}<br>{point.value}',style:{fontSize:'10px',color:'#fff',textOutline:'none'}}}],data:tree}]});exportBtns('eshare',Highcharts.charts[Highcharts.charts.length-1],'سهم بازار');}else{kill('share');charts.share=echarts.init($('share'),currentTheme());charts.share.setOption({tooltip:{trigger:'item',formatter:p=>p.name+'<br>'+full(p.value)},series:[{type:'treemap',label:{color:'#fff'},data:[{name:'داخلی',value:domVal,itemStyle:{color:'#7c3aed'},label:{show:false},children:treeChildren.filter(x=>x.parent==='domestic').map(x=>({name:x.name,value:x.value,itemStyle:{color:x.color},label:{color:'#fff'}}))},{name:'خارجی',value:forVal,itemStyle:{color:'#06b6d4'},label:{show:false},children:treeChildren.filter(x=>x.parent==='foreign').map(x=>({name:x.name,value:x.value,itemStyle:{color:x.color},label:{color:'#fff'}}))}]}]});exportBtns('eshare',charts.share,'سهم بازار');}
-let dom=[],forn=[],domPct=[],fornPct=[];DATA.periods.forEach((p,j)=>{let z=r.filter(d=>d.period_idx===j&&d[f]!=null);let dv=z.filter(d=>d.type==='داخلی').reduce((a,d)=>a+Number(d[f]),0),fv=z.filter(d=>d.type==='خارجی').reduce((a,d)=>a+Number(d[f]),0),tot=dv+fv;dom.push(dv);forn.push(fv);domPct.push(tot?dv/tot*100:null);fornPct.push(tot?fv/tot*100:null);});kill('dom');charts.dom=echarts.init($('dom'),currentTheme());charts.dom.setOption({tooltip:{trigger:'axis',formatter:ps=>ps.map(x=>x.marker+' '+x.seriesName+': '+fa(Number(x.value).toFixed(1))+'٪').join('<br>')},legend:{bottom:2},grid:{left:55,right:25,top:30,bottom:55,containLabel:true},xAxis:{type:'category',data:DATA.periods},yAxis:{type:'value',name:'سهم بازار (٪)',min:0,max:100,axisLabel:{formatter:v=>fa(v)+'٪'}},color:['#7c3aed','#06b6d4'],series:[{name:'داخلی',type:'line',smooth:true,symbolSize:7,lineStyle:{width:3},data:domPct},{name:'خارجی',type:'line',smooth:true,symbolSize:7,lineStyle:{width:3},data:fornPct}]});exportBtns('edom',charts.dom,'داخلی در برابر خارجی (سهم بازار)');
-let rt=top.filter(d=>d.rating!=null);kill('rating');charts.rating=echarts.init($('rating'),currentTheme());charts.rating.setOption({tooltip:{trigger:'axis'},grid:{left:100,right:30,top:15,bottom:30},xAxis:{type:'value',min:0,max:5},yAxis:{type:'category',data:rt.map(d=>d.name).reverse()},series:[{type:'bar',data:rt.map((d,j)=>({value:d.rating,itemStyle:{color:PALETTE[(rt.length-1-j)%PALETTE.length]}})).reverse(),label:{show:true,position:'right',formatter:p=>Number(p.value).toFixed(1)}}]});exportBtns('erating',charts.rating,'امتیاز کاربران');
+if(window.Highcharts&&Highcharts.chart){if(charts.shareHC){try{charts.shareHC.destroy()}catch(e){}charts.shareHC=null}charts.shareHC=Highcharts.chart('share',{chart:{backgroundColor:'transparent',style:{fontFamily:'peyda-num, peyda, Vazirmatn'}},colors:PALETTE,title:{text:null},credits:{enabled:false},tooltip:{pointFormatter:function(){return '<b>'+this.name+'</b>: '+full(this.value)}},series:[{type:'treemap',layoutAlgorithm:'squarified',allowTraversingTree:true,levels:[{level:1,dataLabels:{enabled:false}},{level:2,dataLabels:{enabled:true,formatter:function(){return this.point.name+'<br>'+full(this.point.value)},style:{fontSize:'10px',color:'#fff',textOutline:'none'}}}],data:tree}]});exportBtns('eshare',charts.shareHC,'سهم بازار');}else{kill('share');charts.share=echarts.init($('share'),currentTheme());charts.share.setOption({tooltip:{trigger:'item',formatter:p=>p.name+'<br>'+full(p.value)},series:[{type:'treemap',label:{color:'#fff',formatter:p=>p.name+'\n'+full(p.value)},data:[{name:'داخلی',value:domVal,itemStyle:{color:'#7c3aed'},label:{show:false},children:treeChildren.filter(x=>x.parent==='domestic').map(x=>({name:x.name,value:x.value,itemStyle:{color:x.color},label:{color:'#fff'}}))},{name:'خارجی',value:forVal,itemStyle:{color:'#06b6d4'},label:{show:false},children:treeChildren.filter(x=>x.parent==='foreign').map(x=>({name:x.name,value:x.value,itemStyle:{color:x.color},label:{color:'#fff'}}))}]}]});exportBtns('eshare',charts.share,'سهم بازار');}
+let dom=[],forn=[],domPct=[],fornPct=[];DATA.periods.forEach((p,j)=>{let z=r.filter(d=>d.period_idx===j&&d[f]!=null);let dv=z.filter(d=>d.type==='داخلی').reduce((a,d)=>a+Number(d[f]),0),fv=z.filter(d=>d.type==='خارجی').reduce((a,d)=>a+Number(d[f]),0),tot=dv+fv;dom.push(dv);forn.push(fv);domPct.push(tot?dv/tot*100:null);fornPct.push(tot?fv/tot*100:null);});kill('dom');charts.dom=echarts.init($('dom'),currentTheme());charts.dom.setOption({tooltip:{trigger:'axis',formatter:ps=>ps.map(x=>x.marker+' '+x.seriesName+': '+full(x.value,1)+'٪').join('<br>')},legend:{bottom:2},grid:{left:55,right:25,top:30,bottom:55,containLabel:true},xAxis:{type:'category',data:DATA.periods},yAxis:{type:'value',name:'سهم بازار (٪)',min:0,max:100,axisLabel:{formatter:v=>full(v)+'٪'}},color:['#7c3aed','#06b6d4'],series:[{name:'داخلی',type:'line',smooth:true,symbolSize:7,lineStyle:{width:3},data:domPct},{name:'خارجی',type:'line',smooth:true,symbolSize:7,lineStyle:{width:3},data:fornPct}]});exportBtns('edom',charts.dom,'داخلی در برابر خارجی (سهم بازار)');
+let rt=top.filter(d=>d.rating!=null).sort((a,b)=>Number(b.rating)-Number(a.rating));kill('rating');charts.rating=echarts.init($('rating'),currentTheme());charts.rating.setOption({tooltip:{trigger:'axis',valueFormatter:v=>full(v,1)},grid:{left:100,right:30,top:15,bottom:30},xAxis:{type:'value',min:0,max:5,axisLabel:{formatter:v=>full(v,1)}},yAxis:{type:'category',data:rt.map(d=>d.name).reverse()},series:[{type:'bar',data:rt.map((d,j)=>({value:d.rating,itemStyle:{color:platformColor(d.platform)}})).reverse(),label:{show:true,position:'right',formatter:p=>full(p.value,1)}}]});exportBtns('erating',charts.rating,'امتیاز کاربران');
 
-Object.values(charts).forEach(c=>c?.resize?.())}
+resizeAll()}
 function theme(){document.body.classList.toggle('dark');localStorage.setItem('theme',document.body.classList.contains('dark')?'dark':'light');render()}
-function login(){if($('user').value==='admin'&&$('pass').value==='admin'){sessionStorage.setItem('logged','1');$('login').classList.add('hidden');$('app').classList.remove('hidden');loadDataAndInit()}else $('err').textContent='نام کاربری یا رمز عبور نادرست است.'}
+function login(){if($('user').value==='market_admin'&&$('pass').value==='@dm1n'){sessionStorage.setItem('md_auth','1');$('login').classList.add('hidden');$('app').classList.remove('hidden');loadDataAndInit()}else $('err').textContent='نام کاربری یا رمز عبور نادرست است.'}
 function downloadData(){
   let blob=new Blob([JSON.stringify(DATA,null,2)],{type:'application/json'});
   let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='dashboard-data.json';a.click();
@@ -175,7 +206,7 @@ function submitMonthly(){
   document.querySelectorAll('#monthlyRows input').forEach(inp=>{
     let p=inp.dataset.p,k=inp.dataset.k,v=inp.value.trim();
     vals[p]=vals[p]||{};
-    vals[p][k]=v===''?null:Number(v.replace(/,/g,''));
+    vals[p][k]=v===''?null:parseNum(v);
   });
   let any=false;
   DATA.platforms.forEach(p=>{
@@ -238,7 +269,7 @@ function importAnyFile(parsed){
 }
 async function persistData(successMsg){
   try{
-    let r=await fetch('/api/data',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(DATA)});
+    let r=await fetch(api('/api/data'),{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(DATA)});
     let body=await r.json().catch(()=>({}));
     if(!r.ok)throw new Error(body.error||('خطای سرور: '+r.status));
     toast(successMsg||'روی سرور ذخیره شد.');
@@ -249,7 +280,7 @@ async function persistData(successMsg){
 async function loadDataAndInit(){
   $('fatalErr').classList.add('hidden');
   try{
-    let r=await fetch('/api/data');
+    let r=await fetch(api('/api/data'));
     if(!r.ok){let b=await r.json().catch(()=>({}));throw new Error(b.error||('خطای سرور: '+r.status))}
     DATA=await r.json();
     if(!Array.isArray(DATA.periods)||!Array.isArray(DATA.platforms)||!Array.isArray(DATA.data))throw new Error('پاسخ سرور معتبر نبود.');
@@ -265,13 +296,13 @@ async function triggerScrape(){
   let b=$('scrapeBtn'),orig=b.textContent;
   b.disabled=true;b.textContent='⏳ در حال اسکرپ... ممکن است چند دقیقه طول بکشد';
   try{
-    let r=await fetch('/api/scrape',{method:'POST'});
+    let r=await fetch(api('/api/scrape'),{method:'POST'});
     let body=await r.json().catch(()=>({}));
     if(!r.ok)throw new Error(body.error||('خطای سرور: '+r.status));
     importAnyFile(body);
     if(body.errors&&body.errors.length){
       let names=body.errors.slice(0,3).map(er=>er.platform+'/'+(er.store==='bazaar'?'بازار':'مایکت')).join('، ');
-      toast('⚠️ اسکرپ برای '+body.errors.length+' مورد ناموفق بود (مثلاً '+names+(body.errors.length>3?' و...':'')+'). بقیه پر شدن؛ این‌ها را دستی تکمیل کن.');
+      toast('⚠️ اسکرپ برای '+fa(body.errors.length)+' مورد ناموفق بود (مثلاً '+names+(body.errors.length>3?' و...':'')+'). بقیه پر شدن؛ این‌ها را دستی تکمیل کن.');
     }else{
       toast('✅ اسکرپ با موفقیت انجام شد. مقادیر را مرور کن و «افزودن دوره به داشبورد» را بزن.');
     }
@@ -307,5 +338,5 @@ function handlePeriodImport(ev){
   reader.readAsText(file,'utf-8');
 }
 function toast(t){$('toast').textContent=t;$('toast').style.display='block';setTimeout(()=>$('toast').style.display='none',3500)}
-if(localStorage.getItem('theme')==='dark')document.body.classList.add('dark');if(sessionStorage.getItem('logged')==='1'){$('login').classList.add('hidden');$('app').classList.remove('hidden');loadDataAndInit()}else $('pass').addEventListener('keydown',e=>{if(e.key==='Enter')login()});
+if(localStorage.getItem('theme')==='dark')document.body.classList.add('dark');if(sessionStorage.getItem('md_auth')==='1'){$('login').classList.add('hidden');$('app').classList.remove('hidden');loadDataAndInit()}else $('pass').addEventListener('keydown',e=>{if(e.key==='Enter')login()});
 </script></body></html>

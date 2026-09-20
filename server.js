@@ -6,7 +6,8 @@ const fs = require('fs');
 const { scrapeAll } = require('./lib/scraper');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = Number(process.env.PORT) || 3012;
+const HOST = process.env.HOST || '127.0.0.1';
 
 const DATA_DIR = path.join(__dirname, 'data');
 const DB_PATH = path.join(DATA_DIR, 'db.json');
@@ -104,6 +105,6 @@ process.on('uncaughtException', (err) => {
   console.error('[Uncaught Exception]', err);
 });
 
-app.listen(PORT, () => {
-  console.log(`داشبورد روی http://localhost:${PORT} در حال اجراست.`);
+app.listen(PORT, HOST, () => {
+  console.log(`داشبورد روی http://${HOST}:${PORT} در حال اجراست.`);
 });

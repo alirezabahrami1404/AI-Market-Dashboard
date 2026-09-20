@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: 'ai-apps-dashboard',
+      name: 'market-dashboard',
       script: 'server.js',
       cwd: __dirname,
       instances: 1,
@@ -11,7 +11,8 @@ module.exports = {
       max_memory_restart: '300M',
       env: {
         NODE_ENV: 'production',
-        PORT: 3000,
+        HOST: '127.0.0.1',
+        PORT: 3012,
       },
     },
   ],
