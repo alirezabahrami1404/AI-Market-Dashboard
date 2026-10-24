@@ -18,19 +18,25 @@
 @font-face{font-family:'peyda-num';src:url('fonts/PeydaFaNum-ExtraBold.ttf') format('truetype');font-weight:800;font-style:normal;font-display:swap}
 @font-face{font-family:'peyda-num';src:url('fonts/PeydaFaNum-Black.ttf') format('truetype');font-weight:900;font-style:normal;font-display:swap}
 :root{
-  --bg:#f3f0fa;--card:#fff;--ink:#1d1533;--muted:#726d8a;--line:#e7e1f5;--input:#f7f4fc;
-  --accent:#7c3aed;--accent2:#06b6d4;--shadow:0 10px 30px rgba(76,29,149,.09);
-  --c1:#7c3aed;--c2:#06b6d4;--c3:#f59e0b;--c4:#ec4899;--c5:#10b981;
+  --bg:#f4f6f8;--card:#ffffff;--ink:#172b3a;--muted:#687985;--line:#dfe6eb;--input:#f5f8fa;
+  --accent:#176b87;--accent2:#18a6a6;--shadow:0 4px 16px rgba(25,48,64,.045);
+  --c1:#176b87;--c2:#18a6a6;--c3:#d69a24;--c4:#64748b;--c5:#3f8f68;
 }
-body.dark{--bg:#120f1e;--card:#1c1730;--ink:#f1edfc;--muted:#a79fc4;--line:#332a4d;--input:#241d3d;--shadow:0 10px 32px rgba(0,0,0,.35)}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:'peyda-num','peyda',Vazirmatn,Tahoma,Arial,sans-serif;font-weight:300;font-feature-settings:"ss01" on}
+body.dark{--bg:#101820;--card:#17232d;--ink:#edf3f6;--muted:#9aabb7;--line:#2a3a46;--input:#1d2b36;--shadow:0 4px 16px rgba(0,0,0,.16)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:'peyda-num',Tahoma,Arial,sans-serif;font-weight:300;font-feature-settings:"ss01" on}
 .container{max-width:1500px;margin:auto;padding:24px}button,select,input{font-family:inherit}
-.header{background:linear-gradient(120deg,#1e1240 0%,#4c1d95 45%,#7c3aed 75%,#06b6d4 130%);color:#fff;border-radius:22px;padding:26px 30px;margin-bottom:18px;position:relative;overflow:hidden;display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
-.header::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 85% -20%,rgba(255,255,255,.25),transparent 55%);pointer-events:none}
-.header-text{position:relative;z-index:1;min-width:0;flex:1}
-.header h1{margin:0 0 6px;font-size:27px;font-family:'peyda-num','peyda',Vazirmatn,sans-serif;font-weight:500;letter-spacing:.5px}
-.header p{margin:0;color:#e5ddff;font-size:11.5px}
-.actions{position:relative;z-index:2;display:flex;flex-wrap:wrap;gap:7px;flex:0 1 520px;justify-content:flex-start}.btn{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:9px;padding:7px 10px;cursor:pointer;font-size:10px;font-weight:600;transition:transform .12s ease,box-shadow .12s ease}.btn:hover{transform:translateY(-1px);box-shadow:0 6px 14px rgba(76,29,149,.18)}.actions .btn{background:#ffffff1c;color:#fff;border-color:#ffffff45;backdrop-filter:blur(2px)}.primary{background:linear-gradient(120deg,var(--accent),var(--accent2))!important;color:#fff!important;border-color:transparent!important}
+.header{background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:16px;padding:24px 26px;margin-bottom:18px;display:flex;align-items:center;justify-content:space-between;gap:22px;box-shadow:var(--shadow)}
+.header-text{min-width:0;flex:1}.eyebrow{font-size:10px;color:var(--accent);font-weight:700;margin-bottom:7px;letter-spacing:.2px}
+.header h1{margin:0 0 7px;font-size:25px;font-family:'peyda-num',Tahoma,Arial,sans-serif;font-weight:700;letter-spacing:0}
+.header p{margin:0;color:var(--muted);font-size:11.5px}
+.header-actions{display:flex;align-items:center;justify-content:flex-start;gap:8px;flex-shrink:0}
+.btn{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:9px;padding:9px 12px;cursor:pointer;font-size:11px;font-weight:600;transition:background .15s ease,border-color .15s ease}
+.btn:hover{background:var(--input);border-color:#aebdc7}.primary{background:var(--accent)!important;color:#fff!important;border-color:var(--accent)!important}.primary:hover{background:#12566d!important}
+.theme-btn{font-size:17px;line-height:1;min-width:38px;padding:8px}.data-menu{position:relative}
+.data-menu summary{list-style:none;display:flex;align-items:center;gap:10px;white-space:nowrap}.data-menu summary::-webkit-details-marker{display:none}
+.data-menu[open] summary{background:var(--input)}
+.data-menu-panel{position:absolute;top:calc(100% + 8px);left:0;z-index:100;min-width:220px;padding:7px;display:grid;gap:5px;background:var(--card);border:1px solid var(--line);border-radius:12px;box-shadow:0 12px 32px rgba(15,35,48,.14)}
+.data-menu-panel .btn{text-align:right;background:transparent;border-color:transparent}.data-menu-panel .btn:hover{background:var(--input);border-color:var(--line)}
 .filters{display:grid;grid-template-columns:1fr 1.8fr 1fr 1fr .9fr;gap:10px;margin-bottom:16px}
 .filter,.kpi,.card{background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow)}.filter{border-radius:14px;padding:10px 12px;min-width:0}.filter>label{display:block;font-size:10px;color:var(--muted);margin-bottom:6px;font-weight:600}
 select{width:100%;border:0;background:var(--input);color:var(--ink);border-radius:8px;padding:9px;outline:0}
@@ -38,19 +44,36 @@ select{width:100%;border:0;background:var(--input);color:var(--ink);border-radiu
 .menu{display:none;position:absolute;z-index:50;right:0;left:0;top:calc(100% + 6px);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px;max-height:340px;overflow:auto;box-shadow:0 18px 40px #0002}.menu.open{display:block}.tools{display:flex;gap:5px;margin-bottom:7px}.tools .btn{flex:1;font-size:9px}
 .check{display:flex;align-items:center;gap:7px;padding:6px;border-radius:7px;font-size:10px;cursor:pointer}.check:hover{background:var(--input)}.check input{accent-color:var(--accent)}
 .kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:11px;margin-bottom:16px}
-.kpi{border-radius:15px;padding:15px 15px 15px 17px;border-inline-start:4px solid var(--kc,var(--accent));position:relative;overflow:hidden}
+.kpi{border-radius:13px;padding:15px 15px 15px 17px;border-inline-start:3px solid var(--kc,var(--accent));position:relative;overflow:hidden}
 .kpi::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--kc,var(--accent)) 0%,transparent 60%);opacity:.07;pointer-events:none}
 .kpi:nth-child(1){--kc:var(--c1)}.kpi:nth-child(2){--kc:var(--c2)}.kpi:nth-child(3){--kc:var(--c3)}.kpi:nth-child(4){--kc:var(--c4)}.kpi:nth-child(5){--kc:var(--c5)}
 .label{font-size:10px;color:var(--muted);font-weight:600}.value{font-size:22px;font-weight:800;margin-top:7px;color:var(--kc,var(--ink))}.sub{font-size:9px;color:var(--muted);margin-top:2px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.card{border-radius:17px;padding:12px;min-width:0;border-top:3px solid transparent;background-image:linear-gradient(var(--card),var(--card)),linear-gradient(120deg,var(--accent),var(--accent2));background-origin:border-box;background-clip:padding-box,border-box}.full{grid-column:1/-1}.head{display:flex;justify-content:space-between;align-items:center;gap:8px}.card h2{font-size:13px;margin:4px 5px 7px;font-weight:700}.exports{display:flex;gap:4px;flex-wrap:wrap}.exports .btn{font-size:8px;padding:4px 6px}.chart{height:390px}.small{height:340px}
-.note{font-size:9px;color:var(--muted);padding:7px 3px 16px}.toast{display:none;position:fixed;left:20px;bottom:20px;z-index:100;background:linear-gradient(120deg,#1e1240,#4c1d95);color:#fff;padding:10px 13px;border-radius:10px;font-size:10px;box-shadow:0 10px 26px rgba(0,0,0,.3)}
-.login{position:fixed;inset:0;z-index:200;background:linear-gradient(135deg,#1e1240,#0b0f24);display:flex;align-items:center;justify-content:center}.loginBox{width:min(390px,92vw);background:#fff;color:#172033;border-radius:20px;padding:27px}.loginBox h2{font-family:'peyda-num','peyda',Vazirmatn,sans-serif;font-weight:500;font-size:22px}.loginBox input{width:100%;padding:11px;border:1px solid #e4e8ef;border-radius:9px;margin:5px 0 10px}.loginBox label{font-size:10px}.loginBox p{font-size:10px;color:#687386}.err{color:#dc2626;font-size:10px;min-height:18px}.hidden{display:none!important}
-@media(max-width:1050px){.filters{grid-template-columns:repeat(3,1fr)}.kpis{grid-template-columns:repeat(3,1fr)}.header{flex-wrap:wrap}.actions{flex:1 1 100%}}@media(max-width:650px){.container{padding:11px}.filters,.kpis,.grid{grid-template-columns:1fr}.full{grid-column:auto}.header h1{font-size:19px}}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.card{border-radius:14px;padding:14px;min-width:0;border:1px solid var(--line);background:var(--card);box-shadow:var(--shadow)}.full{grid-column:1/-1}.head{display:flex;justify-content:space-between;align-items:center;gap:8px}.card h2{font-size:13px;margin:4px 5px 7px;font-weight:700}.exports{display:flex;gap:4px;flex-wrap:wrap}.exports .btn{font-size:8px;padding:4px 6px}.chart{height:390px}.small{height:340px}
+.survey-section{margin-top:26px}.survey-heading{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin:0 2px 13px}.survey-heading h2{font-size:20px;margin:0 0 5px;font-weight:700}.survey-heading p{margin:0;color:var(--muted);font-size:11px}.survey-tag{font-size:10px;color:var(--muted);border:1px solid var(--line);border-radius:9px;padding:7px 10px;white-space:nowrap}.survey-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}.survey-chart{height:360px;min-width:0}.survey-chart.tall{height:520px}.survey-note{font-size:10px;color:var(--muted);line-height:1.9;padding:10px 3px 18px}
+@media(max-width:850px){.survey-heading{align-items:flex-start;flex-direction:column}.survey-tag{white-space:normal}.survey-grid{grid-template-columns:1fr}.survey-chart{height:350px}.survey-chart.tall{height:500px}}
+.note{font-size:9px;color:var(--muted);padding:7px 3px 16px}.toast{display:none;position:fixed;left:20px;bottom:20px;z-index:100;background:#173e50;color:#fff;padding:10px 13px;border-radius:10px;font-size:10px;box-shadow:0 10px 26px rgba(0,0,0,.3)}
+.login{position:fixed;inset:0;z-index:200;background:linear-gradient(135deg,#183544,#101820);display:flex;align-items:center;justify-content:center}.loginBox{width:min(390px,92vw);background:#fff;color:#172033;border-radius:20px;padding:27px}.loginBox h2{font-family:'peyda-num',Tahoma,Arial,sans-serif;font-weight:500;font-size:22px}.loginBox input{width:100%;padding:11px;border:1px solid #e4e8ef;border-radius:9px;margin:5px 0 10px}.loginBox label{font-size:10px}.loginBox p{font-size:10px;color:#687386}.err{color:#dc2626;font-size:10px;min-height:18px}.hidden{display:none!important}
+@media(max-width:1050px){.filters{grid-template-columns:repeat(3,1fr)}.kpis{grid-template-columns:repeat(3,1fr)}.header{align-items:flex-start;flex-wrap:wrap}.header-actions{width:100%;justify-content:flex-start}}@media(max-width:650px){.container{padding:11px}.filters,.kpis,.grid{grid-template-columns:1fr}.full{grid-column:auto}.header{padding:18px}.header h1{font-size:20px}.header-actions{flex-wrap:wrap}.data-menu-panel{left:auto;right:0}.grid>div[style*="grid-template-columns:minmax"]{grid-template-columns:1fr!important}}
 </style></head>
 <body>
 <div id="login" class="login"><div class="loginBox"><h2>ورود به داشبورد</h2><p>تحلیل بازار پلتفرم‌های هوش مصنوعی ایران</p><label>نام کاربری</label><input id="user"><label>رمز عبور</label><input id="pass" type="password"><div id="err" class="err"></div><button class="btn primary" style="width:100%;padding:11px" onclick="login()">ورود</button></div></div>
 <div id="app" class="hidden"><div class="container">
-<div class="header"><div class="header-text"><h1>داشبورد تحلیل بازار پلتفرم‌های هوش مصنوعی در ایران</h1><p>تحلیل نصب، رشد و سهم بازار | آذر ۱۴۰۴ تا مرداد ۱۴۰۵</p></div><div class="actions"><button class="btn" onclick="theme()">☀️ / 🌙</button><button class="btn primary" id="scrapeBtn" onclick="triggerScrape()">🔄 دریافت خودکار از فروشگاه‌ها</button><button class="btn" id="upd" onclick="updateData()">↻ بارگذاری JSON</button><input type="file" id="updFile" accept="application/json,.json" class="hidden" onchange="handleUpdateFile(event)"><button class="btn" id="impPeriod" onclick="triggerImportPeriod()">📥 وارد کردن دوره از فایل</button><input type="file" id="periodFile" accept="application/json,.json" class="hidden" onchange="handlePeriodImport(event)"><button class="btn primary" onclick="openMonthly()">➕ ثبت داده دوره جدید</button><button class="btn" onclick="downloadData()">⬇ دانلود دیتابیس</button></div></div>
+<div class="header">
+<div class="header-text"><div class="eyebrow">گزارش بازار · آذر ۱۴۰۴ تا مرداد ۱۴۰۵</div>
+<h1>داشبورد تحلیل بازار پلتفرم‌های هوش مصنوعی در ایران</h1>
+<p>روند نصب، رشد و سهم بازار پلتفرم‌ها در کافه‌بازار و مایکت</p></div>
+<div class="header-actions">
+<button class="btn theme-btn" onclick="theme()" aria-label="تغییر پوسته" title="تغییر پوسته">◐</button>
+<button class="btn primary main-action" onclick="openMonthly()">+ ثبت داده دوره جدید</button>
+<details class="data-menu"><summary class="btn">مدیریت داده‌ها <span aria-hidden="true">⌄</span></summary>
+<div class="data-menu-panel">
+<button class="btn" id="scrapeBtn" onclick="triggerScrape()">دریافت داده از فروشگاه‌ها</button>
+<button class="btn" id="upd" onclick="updateData()">بارگذاری دیتابیس JSON</button>
+<input type="file" id="updFile" accept="application/json,.json" class="hidden" onchange="handleUpdateFile(event)">
+<button class="btn" id="impPeriod" onclick="triggerImportPeriod()">وارد کردن دوره از فایل</button>
+<input type="file" id="periodFile" accept="application/json,.json" class="hidden" onchange="handlePeriodImport(event)">
+<button class="btn" onclick="downloadData()">دانلود نسخه پشتیبان</button>
+</div></details></div></div>
 <div id="fatalErr" class="hidden" style="background:#fee2e2;border:1px solid #fca5a5;color:#991b1b;border-radius:12px;padding:12px 15px;margin-bottom:14px;font-size:11px;display:flex;align-items:center;gap:10px"><span id="fatalErrMsg" style="flex:1"></span><button class="btn" onclick="loadDataAndInit()">تلاش مجدد</button></div>
 <div id="monthly" class="login hidden"><div class="loginBox" style="width:min(920px,94vw);max-height:88vh;overflow:auto;text-align:right">
   <h2>ثبت داده دوره جدید</h2>
@@ -84,10 +107,23 @@ select{width:100%;border:0;background:var(--input);color:var(--ink);border-radiu
 </div>
 <div class="card full"><div class="head"><h2>نصب جدید در هر دوره</h2><div id="epoint" class="exports"></div></div><div id="point" class="chart"></div></div>
 <div class="card full"><div class="head"><h2>رشد پلتفرم‌ها نسبت به دوره قبل</h2><div id="egrowth" class="exports"></div></div><div id="growth" class="chart"></div></div>
-<div class="card full"><div class="head"><h2>سهم بازار در دوره انتخاب‌شده</h2><div id="eshare" class="exports"></div></div><div id="share" class="chart" style="height:560px"></div><div style="display:flex;gap:18px;justify-content:center;margin-top:8px;font-size:11px;color:var(--muted,#94a3b8)"><span style="display:inline-flex;align-items:center;gap:6px"><i style="width:10px;height:10px;border-radius:3px;background:#7c3aed;display:inline-block"></i>داخلی</span><span style="display:inline-flex;align-items:center;gap:6px"><i style="width:10px;height:10px;border-radius:3px;background:#06b6d4;display:inline-block"></i>خارجی</span></div></div>
+<div class="card full"><div class="head"><h2>سهم بازار در دوره انتخاب‌شده</h2><div id="eshare" class="exports"></div></div><div id="share" class="chart" style="height:560px"></div><div style="display:flex;gap:18px;justify-content:center;margin-top:8px;font-size:11px;color:var(--muted,#94a3b8)"><span style="display:inline-flex;align-items:center;gap:6px"><i style="width:10px;height:10px;border-radius:3px;background:#176b87;display:inline-block"></i>داخلی</span><span style="display:inline-flex;align-items:center;gap:6px"><i style="width:10px;height:10px;border-radius:3px;background:#18a6a6;display:inline-block"></i>خارجی</span></div></div>
 <div class="card"><div class="head"><h2>داخلی در برابر خارجی (سهم بازار)</h2><div id="edom" class="exports"></div></div><div id="dom" class="small"></div></div>
 <div class="card"><div class="head"><h2>امتیاز کاربران</h2><div id="erating" class="exports"></div></div><div id="rating" class="small"></div></div>
 </div>
+<section class="survey-section">
+<div class="survey-heading"><div><div class="eyebrow">پیمایش جمعیت ایران</div><h2>آشنایی و استفاده از هوش مصنوعی در ایران</h2><p>نتایج نظرسنجی؛ مستقل از آمار نصب اپلیکیشن‌ها و فروشگاه‌ها</p></div><div class="survey-tag">درصدها طبق فایل منبع · جمعیت‌ها برآوردی</div></div>
+<div class="survey-grid">
+<div class="card"><div class="head"><h2>میزان آشنایی با هوش مصنوعی</h2></div><div id="surveyAwareness" class="survey-chart"></div></div>
+<div class="card"><div class="head"><h2>ابزارهای هوش مصنوعی مورد استفاده</h2></div><div id="surveyTools" class="survey-chart"></div></div>
+<div class="card full"><div class="head"><h2>موارد استفاده از هوش مصنوعی</h2></div><div id="surveyUseCases" class="survey-chart tall"></div></div>
+<div class="card"><div class="head"><h2>توزیع سنی پاسخ‌دهندگان</h2></div><div id="surveyAgeDist" class="survey-chart"></div></div>
+<div class="card"><div class="head"><h2>آشنایی با هوش مصنوعی به تفکیک سن</h2></div><div id="surveyAge" class="survey-chart"></div></div>
+<div class="card"><div class="head"><h2>آشنایی با هوش مصنوعی به تفکیک تحصیلات</h2></div><div id="surveyEducation" class="survey-chart"></div></div>
+<div class="card"><div class="head"><h2>آشنایی با هوش مصنوعی به تفکیک محل سکونت</h2></div><div id="surveyResidence" class="survey-chart"></div></div>
+</div>
+<div class="survey-note">در نمودارهای «ابزارهای مورد استفاده» و «موارد استفاده»، امکان انتخاب چند گزینه وجود دارد؛ بنابراین مجموع درصدها لزوماً ۱۰۰٪ نیست. اعداد جمعیت صرفاً برآورد هستند و نباید به‌عنوان شمارش دقیق افراد تفسیر شوند. مشخصات نمونه‌گیری و حجم نمونه در فایل ارسالی درج نشده است.</div>
+</section>
 <div class="note">منبع داده تاریخی: فایل Excel پروژه. فقط پلتفرم‌های رسمی فهرست پروژه وارد تحلیل شده‌اند؛ مواردی مانند «متیس» حذف شده‌اند. اعداد KPI و نمودارهای اصلی تخمینی با یک رقم اعشار هستند. در «داخلی در برابر خارجی» اعداد کامل فارسی نمایش داده می‌شوند.</div>
 </div></div><div id="toast" class="toast"></div>
 <script>
@@ -118,9 +154,9 @@ function full(n,frac){
 }
 const percent=n=>n==null||!Number.isFinite(Number(n))?'—':full(n*100,2)+'٪';
 const legendFa={type:'scroll',bottom:2,pageFormatter:p=>'\u2066'+fa(p.current)+' / '+fa(p.total)+'\u2069'};
-const PALETTE=['#7c3aed','#06b6d4','#f59e0b','#ec4899','#10b981','#3b82f6','#f97316','#a855f7','#14b8a6','#e11d48','#84cc16','#6366f1','#eab308','#0ea5e9','#d946ef'];
+const PALETTE=['#176b87','#18a6a6','#d69a24','#64748b','#3f8f68','#3b82a0','#d97745','#7c8f63','#4c78a8','#c08457','#5b8b8b','#8b9aab','#a27b45','#508b9b','#8a7b9f'];
 const platformColor=id=>{let i=DATA.platforms.findIndex(p=>p.id===id);return PALETTE[(i<0?0:i)%PALETTE.length]};
-const CHART_FONT="'peyda-num','peyda',Vazirmatn,Tahoma,sans-serif";
+const CHART_FONT="'peyda-num',Tahoma,Arial,sans-serif";
 echarts.registerTheme?.('creative-light',{color:PALETTE,textStyle:{fontFamily:CHART_FONT,color:'#332a4d'},title:{textStyle:{fontFamily:CHART_FONT,color:'#1d1533'}},legend:{textStyle:{fontFamily:CHART_FONT,color:'#332a4d'}},tooltip:{textStyle:{fontFamily:CHART_FONT}},categoryAxis:{axisLine:{lineStyle:{color:'#cdc4e6'}},axisLabel:{fontFamily:CHART_FONT,color:'#5c5578'},splitLine:{lineStyle:{color:'#eee8fa'}}},valueAxis:{axisLine:{lineStyle:{color:'#cdc4e6'}},axisLabel:{fontFamily:CHART_FONT,color:'#5c5578',formatter:v=>full(v)},splitLine:{lineStyle:{color:'#eee8fa'}}}});
 echarts.registerTheme?.('creative-dark',{color:PALETTE,textStyle:{fontFamily:CHART_FONT,color:'#f2f0f8'},title:{textStyle:{fontFamily:CHART_FONT,color:'#ffffff'}},legend:{textStyle:{fontFamily:CHART_FONT,color:'#f2f0f8'}},tooltip:{textStyle:{fontFamily:CHART_FONT}},categoryAxis:{axisLine:{lineStyle:{color:'#4d4570'}},axisLabel:{fontFamily:CHART_FONT,color:'#d8d4e8'},splitLine:{lineStyle:{color:'#332a4d'}}},valueAxis:{axisLine:{lineStyle:{color:'#4d4570'}},axisLabel:{fontFamily:CHART_FONT,color:'#d8d4e8',formatter:v=>full(v)},splitLine:{lineStyle:{color:'#332a4d'}}}});
 function currentTheme(){return document.body.classList.contains('dark')?'creative-dark':'creative-light'}
@@ -137,6 +173,7 @@ function init(){
     init.bound=true;
   }
   render();
+  renderSurveyCharts();
 }
 function buildChecks(){let c=$('checks');c.innerHTML='';DATA.platforms.forEach(p=>{let l=document.createElement('label');l.className='check';l.innerHTML='<input type="checkbox" checked data-id="'+p.id+'"> '+p.name;l.querySelector('input').onchange=e=>{e.target.checked?selected.add(p.id):selected.delete(p.id);syncChecks();render()};c.appendChild(l)});syncChecks()}
 function syncChecks(){let a=selected.size===DATA.platforms.length;$('all').checked=a;$('pickerBtn').textContent=a?'همه پلتفرم‌ها':fa(selected.size)+' پلتفرم انتخاب شده';document.querySelectorAll('#checks input').forEach(x=>x.checked=selected.has(x.dataset.id))}
@@ -152,10 +189,59 @@ function market(i,f){return rows().filter(d=>d.period_idx===i&&d[f]!=null).reduc
 function kill(id){if(charts[id]){charts[id].dispose();delete charts[id]}}
 function exportBtns(id,chart,title){let b=$(id);b.innerHTML='';[['PNG شفاف','png',true],['PNG سفید','png',false],['SVG','svg',false],['XLSX','xlsx',false]].forEach(x=>{let q=document.createElement('button');q.className='btn';q.textContent=x[0];q.onclick=()=>exportIt(chart,title,x[1],x[2]);b.appendChild(q)})}
 async function exportIt(chart,title,type,transparent){if(type==='xlsx'){let wb=new ExcelJS.Workbook(),ws=wb.addWorksheet('داده‌ها'),r=rows().map(d=>[d.name,d.type,d.period,d.bazaar,d.myket,d.total,d.total_point,d.total_growth,d.rating,d.comments]);ws.addRow(['پلتفرم','نوع','دوره','کافه‌بازار','مایکت','نصب تجمعی','نصب جدید','رشد','امتیاز','نظرات']);r.forEach(x=>ws.addRow(x));let b=await wb.xlsx.writeBuffer(),a=document.createElement('a');a.href=URL.createObjectURL(new Blob([b]));a.download=title+'.xlsx';a.click();return}if(chart?.getDataURL){let url=chart.getDataURL({type:'png',backgroundColor:transparent?'rgba(0,0,0,0)':'#fff',pixelRatio:2}),a=document.createElement('a');a.href=url;a.download=title+'.png';a.click()}else if(chart?.exportChart)chart.exportChart({type:type==='svg'?'image/svg+xml':'image/png',scale:2,backgroundColor:transparent?'rgba(0,0,0,0)':'#fff'},{filename:title})}
+function renderSurveyCharts(){
+  const cats=['اصلاً آشنا نیستم','فقط اسم را شنیده‌ام','تا حدودی می‌توانم استفاده کنم','استفاده تخصصی و حرفه‌ای'];
+  const colors=['#64748b','#d69a24','#18a6a6','#176b87'];
+  const textColor=document.body.classList.contains('dark')?'#edf3f6':'#172b3a';
+  const mutedColor=document.body.classList.contains('dark')?'#9aabb7':'#687985';
+  const base={animationDuration:350,textStyle:{fontFamily:CHART_FONT,color:textColor},tooltip:{confine:true,textStyle:{fontFamily:CHART_FONT}}};
+  function barChart(id,items){
+    kill(id);const chart=echarts.init($(id),currentTheme());
+    chart.setOption({...base,grid:{left:12,right:28,top:18,bottom:12,containLabel:true},
+      tooltip:{trigger:'axis',axisPointer:{type:'shadow'},confine:true,formatter:ps=>{const d=items[ps[0].dataIndex];return '<b>'+d.name+'</b><br>سهم: '+full(d.pct,1)+'٪'+(d.pop!=null?'<br>برآورد جمعیت: '+full(d.pop/1000000,1)+' میلیون نفر':'')}},
+      xAxis:{type:'value',min:0,max:100,axisLabel:{formatter:v=>full(v,0)+'٪',color:mutedColor},splitLine:{lineStyle:{color:document.body.classList.contains('dark')?'#2a3a46':'#e5ebef'}}},
+      yAxis:{type:'category',inverse:true,data:items.map(d=>d.name),axisLabel:{fontSize:10,color:textColor,interval:0,width:180,overflow:'break'},axisTick:{show:false},axisLine:{show:false}},
+      series:[{type:'bar',data:items.map((d,i)=>({value:d.pct,itemStyle:{color:colors[i%colors.length],borderRadius:[0,4,4,0]}})),barMaxWidth:23,label:{show:true,position:'right',formatter:p=>full(p.value,1)+'٪',color:textColor,fontSize:10}}]
+    });charts[id]=chart;
+  }
+  barChart('surveyAwareness',[
+    {name:'اصلاً آشنا نیستم',pct:37.6,pop:32759797.872},{name:'فقط اسم آن‌ها را شنیده‌ام',pct:25.4,pop:22130288.988},
+    {name:'تا حدودی می‌توانم استفاده کنم',pct:29.0,pop:25266865.38},{name:'استفاده تخصصی و حرفه‌ای',pct:7.9,pop:6883042.638}
+  ]);
+  barChart('surveyTools',[
+    {name:'چت‌جی‌پی‌تی',pct:90.3,pop:29031366.924},{name:'جمینای',pct:16.4,pop:5272584.912},{name:'دیپ‌سیک',pct:13.2,pop:4243787.856},
+    {name:'ابزارهای داخلی ایرانی',pct:12.5,pop:4018738.5},{name:'گروک',pct:6.6,pop:2121893.928},{name:'کوپایلوت',pct:6.2,pop:1993294.296},{name:'کلود',pct:5.0,pop:1607495.4}
+  ]);
+  barChart('surveyUseCases',[
+    {name:'کسب اطلاعات عمومی',pct:51.1,pop:16428602.988},{name:'آموزش و مهارت‌آموزی',pct:44.1,pop:14178109.428},
+    {name:'تدوین عکس و ویدئو',pct:38.7,pop:12442014.396},{name:'زبان و ترجمه',pct:30.5,pop:9805721.94},
+    {name:'نگارش و ویرایش متن',pct:28.5,pop:9162723.78},{name:'مشاوره پزشکی',pct:27.5,pop:8841224.7},
+    {name:'پژوهش و کارهای علمی',pct:25.1,pop:8069626.908},{name:'ایده‌پردازی',pct:24.6,pop:7908877.368},
+    {name:'تولید محتوا و طراحی',pct:20.9,pop:6719330.772},{name:'برنامه‌ریزی زندگی و راهنمایی حرفه‌ای',pct:19.0,pop:6108482.52},
+    {name:'برنامه‌ریزی کسب‌وکار',pct:16.7,pop:5369034.636},{name:'توسعه نرم‌افزار و برنامه‌نویسی',pct:13.6,pop:4372387.488},
+    {name:'مشاوره حقوقی و امور قضایی',pct:12.5,pop:4018738.5},{name:'تحلیل داده',pct:11.7,pop:3761539.236},
+    {name:'امور اداری و سازمانی',pct:6.7,pop:2154043.836},{name:'سایر',pct:1.4,pop:450098.712}
+  ]);
+  kill('surveyAgeDist');charts.surveyAgeDist=echarts.init($('surveyAgeDist'),currentTheme());
+  charts.surveyAgeDist.setOption({...base,tooltip:{trigger:'item',confine:true,formatter:p=>p.name+'<br>'+full(p.value,1)+'٪<br>برآورد جمعیت: '+full(p.data.pop/1000000,1)+' میلیون نفر'},legend:{bottom:0,textStyle:{color:textColor,fontFamily:CHART_FONT}},series:[{type:'pie',radius:['40%','68%'],center:['50%','45%'],label:{formatter:p=>p.name+'\n'+full(p.value,1)+'٪',fontSize:10,color:textColor},data:[{name:'۱۵ تا ۲۹ سال',value:28.2,pop:24569848.404,itemStyle:{color:'#176b87'}},{name:'۳۰ تا ۴۹ سال',value:45.7,pop:39817094.754,itemStyle:{color:'#18a6a6'}},{name:'۵۰ سال و بیشتر',value:26.1,pop:22740178.842,itemStyle:{color:'#d69a24'}}]}]});
+  function grouped(id,groups,values){
+    kill(id);const chart=echarts.init($(id),currentTheme());
+    chart.setOption({...base,tooltip:{trigger:'axis',axisPointer:{type:'shadow'},confine:true,formatter:ps=>'<b>'+ps[0].axisValue+'</b><br>'+ps.map(p=>p.marker+p.seriesName+': '+full(p.value,1)+'٪').join('<br>')},
+      legend:{type:'scroll',bottom:0,textStyle:{fontFamily:CHART_FONT,color:textColor}},
+      grid:{left:10,right:18,top:18,bottom:65,containLabel:true},
+      xAxis:{type:'category',data:groups,axisLabel:{fontSize:10,interval:0,color:textColor}},
+      yAxis:{type:'value',min:0,max:60,axisLabel:{formatter:v=>full(v,0)+'٪',color:mutedColor},splitLine:{lineStyle:{color:document.body.classList.contains('dark')?'#2a3a46':'#e5ebef'}}},
+      series:cats.map((name,i)=>({name,type:'bar',barMaxWidth:18,itemStyle:{color:colors[i]},data:values[i],label:{show:false}}))
+    });charts[id]=chart;
+  }
+  grouped('surveyAge',['۱۵ تا ۲۹ سال','۳۰ تا ۴۹ سال','۵۰ سال و بیشتر'],[[22.9,38.9,53.8],[20.2,26.3,29.4],[43.2,27.8,15.9],[13.7,7.0,3.3]]);
+  grouped('surveyEducation',['کمتر از دیپلم','دیپلم','دانشگاهی'],[[53.8,39.9,22.2],[24.1,28.7,23.2],[18.1,26.5,40.4],[4.0,4.8,14.3]]);
+  grouped('surveyResidence',['مرکز استان','غیر از مرکز استان','روستا'],[[28.6,39.3,50.8],[25.6,26.1,23.8],[34.0,28.6,21.2],[11.9,6.0,4.3]]);
+}
 function render(){let i=+$('period').value,f=field(),r=rows(),cur=r.filter(d=>d.period_idx===i&&d[f]!=null),total=cur.reduce((a,d)=>a+d[f],0),point=cur.reduce((a,d)=>a+(d[f+'_point']||0),0),prev=i?market(i-1,f):0,g=prev?total/prev-1:null,top=topRows(),fast=[...cur].filter(d=>d[f+'_growth']!=null).sort((a,b)=>b[f+'_growth']-a[f+'_growth'])[0];$('kt').textContent=full(total);$('kp').textContent=full(point);$('kg').textContent=percent(g);$('ktop').textContent=top[0]?.name||'—';$('kfast').textContent=fast?.name||'—';
 let ids=top.map(d=>d.platform),names=ids.map(id=>DATA.platforms.find(p=>p.id===id)?.name||id);
 let source=[['دوره',...ids]];DATA.periods.forEach((p,j)=>source.push([p,...ids.map(id=>r.find(d=>d.platform===id&&d.period_idx===j)?.[f]??null)]));
-kill('cum');charts.cum=echarts.init($('cum'),currentTheme());charts.cum.setOption({tooltip:{trigger:'axis',valueFormatter:v=>full(v)},legend:legendFa,dataset:{source},grid:{left:80,right:25,top:35,bottom:55},xAxis:{type:'category'},yAxis:{type:'value',name:'نصب تجمعی',axisLabel:{formatter:v=>full(v)}},series:ids.map((id,j)=>({name:names[j],type:'line',smooth:true,showSymbol:true,encode:{x:0,y:j+1}}))});exportBtns('ecum',charts.cum,'روند نصب تجمعی');kill('ecumpie');charts.ecumpie=echarts.init($('ecumpiechart'),currentTheme());{let dk=document.body.classList.contains('dark'),lbl=dk?'#f2f0f8':'#332a4d',ln=dk?'#5c5578':'#cdc4e6';charts.ecumpie.setOption({tooltip:{trigger:'item',formatter:p=>p.name+'<br>'+full(p.value)+' ('+full(p.percent,2)+'٪)'},legend:{...legendFa,textStyle:{color:lbl}},series:[{type:'pie',radius:['35%','70%'],avoidLabelOverlap:true,label:{color:lbl,fontFamily:CHART_FONT,formatter:p=>p.name},labelLine:{lineStyle:{color:ln}},itemStyle:{borderColor:dk?'#1c1730':'#fff',borderWidth:2},data:top.map(d=>({name:d.name,value:Number(d[f])||0}))}]});}exportBtns('ecumpie',charts.ecumpie,'ترکیب نصب تجمعی');
+kill('cum');charts.cum=echarts.init($('cum'),currentTheme());charts.cum.setOption({tooltip:{trigger:'axis',valueFormatter:v=>full(v)},legend:legendFa,dataset:{source},grid:{left:80,right:25,top:35,bottom:55},xAxis:{type:'category'},yAxis:{type:'value',name:'نصب تجمعی',axisLabel:{formatter:v=>full(v)}},series:ids.map((id,j)=>({name:names[j],type:'line',smooth:true,showSymbol:true,encode:{x:0,y:j+1}}))});exportBtns('ecum',charts.cum,'روند نصب تجمعی');kill('ecumpie');charts.ecumpie=echarts.init($('ecumpiechart'),currentTheme());{let dk=document.body.classList.contains('dark'),lbl=dk?'#f2f0f8':'#332a4d',ln=dk?'#5c5578':'#cdc4e6';charts.ecumpie.setOption({tooltip:{trigger:'item',formatter:p=>p.name+'<br>'+full(p.value)+' ('+full(p.percent,2)+'٪)'},legend:{...legendFa,textStyle:{color:lbl}},series:[{type:'pie',radius:['35%','70%'],avoidLabelOverlap:true,label:{color:lbl,fontFamily:CHART_FONT,formatter:p=>p.name},labelLine:{lineStyle:{color:ln}},itemStyle:{borderColor:dk?'#17232d':'#fff',borderWidth:2},data:top.map(d=>({name:d.name,value:Number(d[f])||0}))}]});}exportBtns('ecumpie',charts.ecumpie,'ترکیب نصب تجمعی');
 kill('point');charts.point=echarts.init($('point'),currentTheme());
 const pointPeriods=DATA.periods;
 const pointSeries=ids.map((id,j)=>({name:names[j],type:'bar',stack:'installs',barMaxWidth:34,emphasis:{focus:'series'},data:pointPeriods.map((p,k)=>{let d=r.find(x=>x.platform===id&&x.period_idx===k);return d&&d[f+'_point']!=null?Number(d[f+'_point']):0})}));
@@ -164,13 +250,13 @@ kill('growth');const growthPeriods=DATA.periods.slice(1);charts.growth=echarts.i
 let treeChildren=top.map(d=>({id:(d.type==='داخلی'?'domestic':'foreign')+'-'+d.platform,name:d.name,parent:d.type==='داخلی'?'domestic':'foreign',value:Number(d[f])||0}));
 let domVal=treeChildren.filter(x=>x.parent==='domestic').reduce((a,x)=>a+x.value,0),forVal=treeChildren.filter(x=>x.parent==='foreign').reduce((a,x)=>a+x.value,0);
 treeChildren.forEach(c=>c.color=platformColor(c.id.replace(/^(domestic|foreign)-/,'')));
-let tree=[{id:'domestic',name:'داخلی',value:domVal,color:'#7c3aed'},{id:'foreign',name:'خارجی',value:forVal,color:'#06b6d4'},...treeChildren];
-if(window.Highcharts&&Highcharts.chart){if(charts.shareHC){try{charts.shareHC.destroy()}catch(e){}charts.shareHC=null}charts.shareHC=Highcharts.chart('share',{chart:{backgroundColor:'transparent',style:{fontFamily:'peyda-num, peyda, Vazirmatn'}},colors:PALETTE,title:{text:null},credits:{enabled:false},tooltip:{pointFormatter:function(){return '<b>'+this.name+'</b>: '+full(this.value)}},series:[{type:'treemap',layoutAlgorithm:'squarified',allowTraversingTree:true,levels:[{level:1,dataLabels:{enabled:false}},{level:2,dataLabels:{enabled:true,formatter:function(){return this.point.name+'<br>'+full(this.point.value)},style:{fontSize:'10px',color:'#fff',textOutline:'none'}}}],data:tree}]});exportBtns('eshare',charts.shareHC,'سهم بازار');}else{kill('share');charts.share=echarts.init($('share'),currentTheme());charts.share.setOption({tooltip:{trigger:'item',formatter:p=>p.name+'<br>'+full(p.value)},series:[{type:'treemap',label:{color:'#fff',formatter:p=>p.name+'\n'+full(p.value)},data:[{name:'داخلی',value:domVal,itemStyle:{color:'#7c3aed'},label:{show:false},children:treeChildren.filter(x=>x.parent==='domestic').map(x=>({name:x.name,value:x.value,itemStyle:{color:x.color},label:{color:'#fff'}}))},{name:'خارجی',value:forVal,itemStyle:{color:'#06b6d4'},label:{show:false},children:treeChildren.filter(x=>x.parent==='foreign').map(x=>({name:x.name,value:x.value,itemStyle:{color:x.color},label:{color:'#fff'}}))}]}]});exportBtns('eshare',charts.share,'سهم بازار');}
-let dom=[],forn=[],domPct=[],fornPct=[];DATA.periods.forEach((p,j)=>{let z=r.filter(d=>d.period_idx===j&&d[f]!=null);let dv=z.filter(d=>d.type==='داخلی').reduce((a,d)=>a+Number(d[f]),0),fv=z.filter(d=>d.type==='خارجی').reduce((a,d)=>a+Number(d[f]),0),tot=dv+fv;dom.push(dv);forn.push(fv);domPct.push(tot?dv/tot*100:null);fornPct.push(tot?fv/tot*100:null);});kill('dom');charts.dom=echarts.init($('dom'),currentTheme());charts.dom.setOption({tooltip:{trigger:'axis',formatter:ps=>ps.map(x=>x.marker+' '+x.seriesName+': '+full(x.value,1)+'٪').join('<br>')},legend:{bottom:2},grid:{left:55,right:25,top:30,bottom:55,containLabel:true},xAxis:{type:'category',data:DATA.periods},yAxis:{type:'value',name:'سهم بازار (٪)',min:0,max:100,axisLabel:{formatter:v=>full(v)+'٪'}},color:['#7c3aed','#06b6d4'],series:[{name:'داخلی',type:'line',smooth:true,symbolSize:7,lineStyle:{width:3},data:domPct},{name:'خارجی',type:'line',smooth:true,symbolSize:7,lineStyle:{width:3},data:fornPct}]});exportBtns('edom',charts.dom,'داخلی در برابر خارجی (سهم بازار)');
+let tree=[{id:'domestic',name:'داخلی',value:domVal,color:'#176b87'},{id:'foreign',name:'خارجی',value:forVal,color:'#18a6a6'},...treeChildren];
+if(window.Highcharts&&Highcharts.chart){if(charts.shareHC){try{charts.shareHC.destroy()}catch(e){}charts.shareHC=null}charts.shareHC=Highcharts.chart('share',{chart:{backgroundColor:'transparent',style:{fontFamily:'peyda-num'}},colors:PALETTE,title:{text:null},credits:{enabled:false},tooltip:{pointFormatter:function(){return '<b>'+this.name+'</b>: '+full(this.value)}},series:[{type:'treemap',layoutAlgorithm:'squarified',allowTraversingTree:true,levels:[{level:1,dataLabels:{enabled:false}},{level:2,dataLabels:{enabled:true,formatter:function(){return this.point.name+'<br>'+full(this.point.value)},style:{fontSize:'10px',color:'#fff',textOutline:'none'}}}],data:tree}]});exportBtns('eshare',charts.shareHC,'سهم بازار');}else{kill('share');charts.share=echarts.init($('share'),currentTheme());charts.share.setOption({tooltip:{trigger:'item',formatter:p=>p.name+'<br>'+full(p.value)},series:[{type:'treemap',label:{color:'#fff',formatter:p=>p.name+'\n'+full(p.value)},data:[{name:'داخلی',value:domVal,itemStyle:{color:'#176b87'},label:{show:false},children:treeChildren.filter(x=>x.parent==='domestic').map(x=>({name:x.name,value:x.value,itemStyle:{color:x.color},label:{color:'#fff'}}))},{name:'خارجی',value:forVal,itemStyle:{color:'#18a6a6'},label:{show:false},children:treeChildren.filter(x=>x.parent==='foreign').map(x=>({name:x.name,value:x.value,itemStyle:{color:x.color},label:{color:'#fff'}}))}]}]});exportBtns('eshare',charts.share,'سهم بازار');}
+let dom=[],forn=[],domPct=[],fornPct=[];DATA.periods.forEach((p,j)=>{let z=r.filter(d=>d.period_idx===j&&d[f]!=null);let dv=z.filter(d=>d.type==='داخلی').reduce((a,d)=>a+Number(d[f]),0),fv=z.filter(d=>d.type==='خارجی').reduce((a,d)=>a+Number(d[f]),0),tot=dv+fv;dom.push(dv);forn.push(fv);domPct.push(tot?dv/tot*100:null);fornPct.push(tot?fv/tot*100:null);});kill('dom');charts.dom=echarts.init($('dom'),currentTheme());charts.dom.setOption({tooltip:{trigger:'axis',formatter:ps=>ps.map(x=>x.marker+' '+x.seriesName+': '+full(x.value,1)+'٪').join('<br>')},legend:{bottom:2},grid:{left:55,right:25,top:30,bottom:55,containLabel:true},xAxis:{type:'category',data:DATA.periods},yAxis:{type:'value',name:'سهم بازار (٪)',min:0,max:100,axisLabel:{formatter:v=>full(v)+'٪'}},color:['#176b87','#18a6a6'],series:[{name:'داخلی',type:'line',smooth:true,symbolSize:7,lineStyle:{width:3},data:domPct},{name:'خارجی',type:'line',smooth:true,symbolSize:7,lineStyle:{width:3},data:fornPct}]});exportBtns('edom',charts.dom,'داخلی در برابر خارجی (سهم بازار)');
 let rt=top.filter(d=>d.rating!=null).sort((a,b)=>Number(b.rating)-Number(a.rating));kill('rating');charts.rating=echarts.init($('rating'),currentTheme());charts.rating.setOption({tooltip:{trigger:'axis',valueFormatter:v=>full(v,1)},grid:{left:100,right:30,top:15,bottom:30},xAxis:{type:'value',min:0,max:5,axisLabel:{formatter:v=>full(v,1)}},yAxis:{type:'category',data:rt.map(d=>d.name).reverse()},series:[{type:'bar',data:rt.map((d,j)=>({value:d.rating,itemStyle:{color:platformColor(d.platform)}})).reverse(),label:{show:true,position:'right',formatter:p=>full(p.value,1)}}]});exportBtns('erating',charts.rating,'امتیاز کاربران');
 
 resizeAll()}
-function theme(){document.body.classList.toggle('dark');localStorage.setItem('theme',document.body.classList.contains('dark')?'dark':'light');render()}
+function theme(){document.body.classList.toggle('dark');localStorage.setItem('theme',document.body.classList.contains('dark')?'dark':'light');render();renderSurveyCharts()}
 function login(){if($('user').value==='market_admin'&&$('pass').value==='@dm1n'){sessionStorage.setItem('md_auth','1');$('login').classList.add('hidden');$('app').classList.remove('hidden');loadDataAndInit()}else $('err').textContent='نام کاربری یا رمز عبور نادرست است.'}
 function downloadData(){
   let blob=new Blob([JSON.stringify(DATA,null,2)],{type:'application/json'});
