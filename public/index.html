@@ -135,8 +135,26 @@ const APP_BASE=(pathname=>{
   return '';
 })(window.location.pathname);
 const api=path=>APP_BASE+path;
-// محاسبه مجدد رشد از روی داده‌های خام: رشد هر دوره = نصب جدید همان دوره / نصب تجمعی دوره قبل.
-function computeGrowth(){DATA.data.forEach(d=>{const prev=DATA.data.find(x=>x.platform===d.platform&&x.period_idx===d.period_idx-1);['total','bazaar','myket'].forEach(k=>{const pk=k+'_point';d[k+'_growth']=(d.period_idx>0&&prev&&d[pk]!=null&&prev[k]!=null&&Number(prev[k])>0)?Number(d[pk])/Number(prev[k]):null})})}
+// محاسبات معتبر: داده‌ی ناموجود را صفر فرض نکن؛ نصب تجمعی نزولی را خطای داده بدان.
+function computeGrowth(){
+  const byKey=new Map(DATA.data.map(d=>[String(d.platform)+'|'+Number(d.period_idx),d]));
+  DATA.data.forEach(d=>{
+    const prev=byKey.get(String(d.platform)+'|'+(Number(d.period_idx)-1));
+    ['total','bazaar','myket'].forEach(k=>{
+      const pointKey=k+'_point', growthKey=k+'_growth';
+      const current=d[k], previous=prev?.[k];
+      if(Number(d.period_idx)===0){d[growthKey]=null;return;}
+      if(current==null||previous==null||!Number.isFinite(Number(current))||!Number.isFinite(Number(previous))||Number(previous)<=0||Number(current)<Number(previous)){
+        d[growthKey]=null;
+        return;
+      }
+      const point=Number(current)-Number(previous);
+      d[pointKey]=point>=0?point:null;
+      // نمودار رشد صفر را عمداً نمایش نمی‌دهد.
+      d[growthKey]=point>0?point/Number(previous):null;
+    });
+  });
+}
 
 const FA_DIGITS='۰۱۲۳۴۵۶۷۸۹';
 const fa=s=>String(s).replace(/\d/g,d=>FA_DIGITS[d]);
@@ -240,13 +258,13 @@ function renderSurveyCharts(){
 }
 function render(){let i=+$('period').value,f=field(),r=rows(),cur=r.filter(d=>d.period_idx===i&&d[f]!=null),total=cur.reduce((a,d)=>a+d[f],0),point=cur.reduce((a,d)=>a+(d[f+'_point']||0),0),prev=i?market(i-1,f):0,g=prev?total/prev-1:null,top=topRows(),fast=[...cur].filter(d=>d[f+'_growth']!=null).sort((a,b)=>b[f+'_growth']-a[f+'_growth'])[0];$('kt').textContent=full(total);$('kp').textContent=full(point);$('kg').textContent=percent(g);$('ktop').textContent=top[0]?.name||'—';$('kfast').textContent=fast?.name||'—';
 let ids=top.map(d=>d.platform),names=ids.map(id=>DATA.platforms.find(p=>p.id===id)?.name||id);
-let source=[['دوره',...ids]];DATA.periods.forEach((p,j)=>source.push([p,...ids.map(id=>r.find(d=>d.platform===id&&d.period_idx===j)?.[f]??null)]));
+let source=[['دوره',...ids]];DATA.periods.forEach((p,j)=>source.push([p,...ids.map(id=>{const d=r.find(x=>x.platform===id&&x.period_idx===j),prev=j?r.find(x=>x.platform===id&&x.period_idx===j-1):null;const v=d?.[f];return v!=null&&(!prev||prev[f]==null||Number(v)>=Number(prev[f]))?v:null})]));
 kill('cum');charts.cum=echarts.init($('cum'),currentTheme());charts.cum.setOption({tooltip:{trigger:'axis',valueFormatter:v=>full(v)},legend:legendFa,dataset:{source},grid:{left:80,right:25,top:35,bottom:55},xAxis:{type:'category'},yAxis:{type:'value',name:'نصب تجمعی',axisLabel:{formatter:v=>full(v)}},series:ids.map((id,j)=>({name:names[j],type:'line',smooth:true,showSymbol:true,encode:{x:0,y:j+1}}))});exportBtns('ecum',charts.cum,'روند نصب تجمعی');kill('ecumpie');charts.ecumpie=echarts.init($('ecumpiechart'),currentTheme());{let dk=document.body.classList.contains('dark'),lbl=dk?'#f2f0f8':'#332a4d',ln=dk?'#5c5578':'#cdc4e6';charts.ecumpie.setOption({tooltip:{trigger:'item',formatter:p=>p.name+'<br>'+full(p.value)+' ('+full(p.percent,2)+'٪)'},legend:{...legendFa,textStyle:{color:lbl}},series:[{type:'pie',radius:['35%','70%'],avoidLabelOverlap:true,label:{color:lbl,fontFamily:CHART_FONT,formatter:p=>p.name},labelLine:{lineStyle:{color:ln}},itemStyle:{borderColor:dk?'#17232d':'#fff',borderWidth:2},data:top.map(d=>({name:d.name,value:Number(d[f])||0}))}]});}exportBtns('ecumpie',charts.ecumpie,'ترکیب نصب تجمعی');
 kill('point');charts.point=echarts.init($('point'),currentTheme());
 const pointPeriods=DATA.periods;
-const pointSeries=ids.map((id,j)=>({name:names[j],type:'bar',stack:'installs',barMaxWidth:34,emphasis:{focus:'series'},data:pointPeriods.map((p,k)=>{let d=r.find(x=>x.platform===id&&x.period_idx===k);return d&&d[f+'_point']!=null?Number(d[f+'_point']):0})}));
+const pointSeries=ids.map((id,j)=>({name:names[j],type:'bar',stack:'installs',barMaxWidth:34,emphasis:{focus:'series'},data:pointPeriods.map((p,k)=>{let d=r.find(x=>x.platform===id&&x.period_idx===k),prev=k?r.find(x=>x.platform===id&&x.period_idx===k-1):null;const v=d?.[f+'_point'];if(!d||v==null||Number(v)<=0)return null;if(k===0)return Number(v);return prev&&d[f]!=null&&prev[f]!=null&&Number(d[f])>=Number(prev[f])?Number(v):null})}));
 charts.point.setOption({animation:true,tooltip:{trigger:'axis',axisPointer:{type:'shadow'},formatter:function(params){let total=0,html='<b>'+params[0].axisValue+'</b><br>';params.forEach(function(x){if(Number(x.value)!==0){total+=Number(x.value);html+=x.marker+' '+x.seriesName+': '+full(x.value)+'<br>';}});html+='<hr style="margin:5px 0;border:0;border-top:1px solid #ddd"><b>جمع نصب جدید: '+full(total)+'</b>';return html;}},legend:{...legendFa,orient:'horizontal',bottom:0,left:10,right:10},grid:{left:95,right:35,top:25,bottom:78,containLabel:true},xAxis:{type:'value',name:'نصب جدید',nameLocation:'middle',nameGap:36,axisLabel:{formatter:v=>full(v)},splitLine:{show:true}},yAxis:{type:'category',data:pointPeriods,axisLabel:{fontSize:11,margin:12}},series:pointSeries});exportBtns('epoint',charts.point,'نصب جدید در هر دوره');
-kill('growth');const growthPeriods=DATA.periods.slice(1);charts.growth=echarts.init($('growth'),currentTheme());charts.growth.setOption({tooltip:{trigger:'axis',valueFormatter:v=>full(v,2)+'٪'},legend:legendFa,grid:{left:70,right:25,top:35,bottom:55},xAxis:{type:'category',data:growthPeriods},yAxis:{type:'value',name:'رشد (٪)',axisLabel:{formatter:v=>full(v)+'٪'}},series:ids.map((id,j)=>({name:names[j],type:'line',smooth:true,showSymbol:true,data:growthPeriods.map((p,k)=>{let idx=k+1,d=r.find(x=>x.platform===id&&x.period_idx===idx),prev=r.find(x=>x.platform===id&&x.period_idx===idx-1);return d&&prev&&Number(prev[f])>0?Number(d[f+'_point'])/Number(prev[f])*100:null})}))});exportBtns('egrowth',charts.growth,'رشد پلتفرم‌ها');
+kill('growth');const growthPeriods=DATA.periods.slice(1);charts.growth=echarts.init($('growth'),currentTheme());charts.growth.setOption({tooltip:{trigger:'axis',valueFormatter:v=>full(v,2)+'٪'},legend:legendFa,grid:{left:70,right:25,top:35,bottom:55},xAxis:{type:'category',data:growthPeriods},yAxis:{type:'value',name:'رشد (٪)',axisLabel:{formatter:v=>full(v)+'٪'}},series:ids.map((id,j)=>({name:names[j],type:'line',smooth:true,showSymbol:true,connectNulls:false,data:growthPeriods.map((p,k)=>{let idx=k+1,d=r.find(x=>x.platform===id&&x.period_idx===idx),prev=r.find(x=>x.platform===id&&x.period_idx===idx-1);if(!d||!prev||d[f]==null||prev[f]==null||Number(prev[f])<=0||Number(d[f])<Number(prev[f]))return null;const point=Number(d[f])-Number(prev[f]);return point>0?point/Number(prev[f])*100:null})}))});exportBtns('egrowth',charts.growth,'رشد پلتفرم‌ها');
 let treeChildren=top.map(d=>({id:(d.type==='داخلی'?'domestic':'foreign')+'-'+d.platform,name:d.name,parent:d.type==='داخلی'?'domestic':'foreign',value:Number(d[f])||0}));
 let domVal=treeChildren.filter(x=>x.parent==='domestic').reduce((a,x)=>a+x.value,0),forVal=treeChildren.filter(x=>x.parent==='foreign').reduce((a,x)=>a+x.value,0);
 treeChildren.forEach(c=>c.color=platformColor(c.id.replace(/^(domestic|foreign)-/,'')));
@@ -312,9 +330,9 @@ function submitMonthly(){
     let comments=(v.bcom!=null||v.mcom!=null)?(v.bcom||0)+(v.mcom||0):null;
     if(total!=null)any=true;
     let prev=DATA.data.find(d=>d.platform===p.id&&d.period_idx===idx-1);
-    let bp=(bazaar!=null&&prev&&prev.bazaar!=null)?bazaar-prev.bazaar:(bazaar!=null?bazaar:null);
-    let mp=(myket!=null&&prev&&prev.myket!=null)?myket-prev.myket:(myket!=null?myket:null);
-    let tp=(total!=null&&prev&&prev.total!=null)?total-prev.total:(total!=null?total:null);
+    let bp=(bazaar!=null&&prev&&prev.bazaar!=null)?(bazaar>=prev.bazaar?bazaar-prev.bazaar:null):(bazaar!=null&&(!prev||prev.bazaar==null)?null:null);
+    let mp=(myket!=null&&prev&&prev.myket!=null)?(myket>=prev.myket?myket-prev.myket:null):(myket!=null&&(!prev||prev.myket==null)?null:null);
+    let tp=(total!=null&&prev&&prev.total!=null)?(total>=prev.total?total-prev.total:null):null;
     DATA.data.push({period:label,platform:p.id,type:p.type,bazaar,myket,total,rating,comments,period_idx:idx,name:p.id,
       total_point:tp,total_growth:null,bazaar_point:bp,bazaar_growth:null,myket_point:mp,myket_growth:null,
       total_share:null,bazaar_share:null,myket_share:null});
