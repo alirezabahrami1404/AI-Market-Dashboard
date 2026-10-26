@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>داشبورد تحلیل بازار پلتفرم‌های هوش مصنوعی ایران</title>
-<script src="https://cdn.jsdelivr.net/npm/echarts@5.6.0/dist/echarts.min.js"></script>
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/modules/treemap.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/exceljs@4.4.0/dist/exceljs.min.js"></script>
+<script src="vendor/echarts.min.js"></script>
+<script src="vendor/highcharts.js"></script>
+<script src="vendor/treemap.js"></script>
+<script src="vendor/exceljs.min.js"></script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&family=Lalezar&display=swap');
 @font-face{font-family:'peyda-num';src:url('fonts/PeydaFaNum-Thin.ttf') format('truetype');font-weight:100;font-style:normal;font-display:swap}
@@ -128,6 +128,7 @@ select{width:100%;border:0;background:var(--input);color:var(--ink);border-radiu
 </div></div><div id="toast" class="toast"></div>
 <script>
 let DATA={periods:[],platforms:[],data:[],sources:{}};
+let charts={}, selected=new Set();
 const $=id=>document.getElementById(id);
 const APP_BASE=(pathname=>{
   const p=pathname||'';
@@ -175,10 +176,9 @@ const legendFa={type:'scroll',bottom:2,pageFormatter:p=>'\u2066'+fa(p.current)+'
 const PALETTE=['#176b87','#18a6a6','#d69a24','#64748b','#3f8f68','#3b82a0','#d97745','#7c8f63','#4c78a8','#c08457','#5b8b8b','#8b9aab','#a27b45','#508b9b','#8a7b9f'];
 const platformColor=id=>{let i=DATA.platforms.findIndex(p=>p.id===id);return PALETTE[(i<0?0:i)%PALETTE.length]};
 const CHART_FONT="'peyda-num',Tahoma,Arial,sans-serif";
-echarts.registerTheme?.('creative-light',{color:PALETTE,textStyle:{fontFamily:CHART_FONT,color:'#332a4d'},title:{textStyle:{fontFamily:CHART_FONT,color:'#1d1533'}},legend:{textStyle:{fontFamily:CHART_FONT,color:'#332a4d'}},tooltip:{textStyle:{fontFamily:CHART_FONT}},categoryAxis:{axisLine:{lineStyle:{color:'#cdc4e6'}},axisLabel:{fontFamily:CHART_FONT,color:'#5c5578'},splitLine:{lineStyle:{color:'#eee8fa'}}},valueAxis:{axisLine:{lineStyle:{color:'#cdc4e6'}},axisLabel:{fontFamily:CHART_FONT,color:'#5c5578',formatter:v=>full(v)},splitLine:{lineStyle:{color:'#eee8fa'}}}});
-echarts.registerTheme?.('creative-dark',{color:PALETTE,textStyle:{fontFamily:CHART_FONT,color:'#f2f0f8'},title:{textStyle:{fontFamily:CHART_FONT,color:'#ffffff'}},legend:{textStyle:{fontFamily:CHART_FONT,color:'#f2f0f8'}},tooltip:{textStyle:{fontFamily:CHART_FONT}},categoryAxis:{axisLine:{lineStyle:{color:'#4d4570'}},axisLabel:{fontFamily:CHART_FONT,color:'#d8d4e8'},splitLine:{lineStyle:{color:'#332a4d'}}},valueAxis:{axisLine:{lineStyle:{color:'#4d4570'}},axisLabel:{fontFamily:CHART_FONT,color:'#d8d4e8',formatter:v=>full(v)},splitLine:{lineStyle:{color:'#332a4d'}}}});
+window.echarts&&echarts.registerTheme?.('creative-light',{color:PALETTE,textStyle:{fontFamily:CHART_FONT,color:'#332a4d'},title:{textStyle:{fontFamily:CHART_FONT,color:'#1d1533'}},legend:{textStyle:{fontFamily:CHART_FONT,color:'#332a4d'}},tooltip:{textStyle:{fontFamily:CHART_FONT}},categoryAxis:{axisLine:{lineStyle:{color:'#cdc4e6'}},axisLabel:{fontFamily:CHART_FONT,color:'#5c5578'},splitLine:{lineStyle:{color:'#eee8fa'}}},valueAxis:{axisLine:{lineStyle:{color:'#cdc4e6'}},axisLabel:{fontFamily:CHART_FONT,color:'#5c5578',formatter:v=>full(v)},splitLine:{lineStyle:{color:'#eee8fa'}}}});
+window.echarts&&echarts.registerTheme?.('creative-dark',{color:PALETTE,textStyle:{fontFamily:CHART_FONT,color:'#f2f0f8'},title:{textStyle:{fontFamily:CHART_FONT,color:'#ffffff'}},legend:{textStyle:{fontFamily:CHART_FONT,color:'#f2f0f8'}},tooltip:{textStyle:{fontFamily:CHART_FONT}},categoryAxis:{axisLine:{lineStyle:{color:'#4d4570'}},axisLabel:{fontFamily:CHART_FONT,color:'#d8d4e8'},splitLine:{lineStyle:{color:'#332a4d'}}},valueAxis:{axisLine:{lineStyle:{color:'#4d4570'}},axisLabel:{fontFamily:CHART_FONT,color:'#d8d4e8',formatter:v=>full(v)},splitLine:{lineStyle:{color:'#332a4d'}}}});
 function currentTheme(){return document.body.classList.contains('dark')?'creative-dark':'creative-light'}
-let charts={}, selected=new Set();
 function resizeAll(){Object.values(charts).forEach(c=>{if(c&&typeof c.resize==='function')c.resize();else if(c&&typeof c.reflow==='function')c.reflow()})}
 function init(){
   const period=$('period');period.innerHTML='';
