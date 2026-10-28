@@ -49,9 +49,9 @@ select{width:100%;border:0;background:var(--input);color:var(--ink);border-radiu
 .kpi:nth-child(1){--kc:var(--c1)}.kpi:nth-child(2){--kc:var(--c2)}.kpi:nth-child(3){--kc:var(--c3)}.kpi:nth-child(4){--kc:var(--c4)}.kpi:nth-child(5){--kc:var(--c5)}
 .label{font-size:10px;color:var(--muted);font-weight:600}.value{font-size:22px;font-weight:800;margin-top:7px;color:var(--kc,var(--ink))}.sub{font-size:9px;color:var(--muted);margin-top:2px}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.card{border-radius:14px;padding:14px;min-width:0;border:1px solid var(--line);background:var(--card);box-shadow:var(--shadow)}.full{grid-column:1/-1}.head{display:flex;justify-content:space-between;align-items:center;gap:8px}.card h2{font-size:13px;margin:4px 5px 7px;font-weight:700}.exports{display:flex;gap:4px;flex-wrap:wrap}.exports .btn{font-size:8px;padding:4px 6px}.chart{height:390px}.small{height:340px}
-.survey-section{margin-top:26px}.survey-heading{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin:0 2px 13px}.survey-heading h2{font-size:20px;margin:0 0 5px;font-weight:700}.survey-heading p{margin:0;color:var(--muted);font-size:11px}.survey-tag{font-size:10px;color:var(--muted);border:1px solid var(--line);border-radius:9px;padding:7px 10px;white-space:nowrap}.survey-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}.survey-chart{height:360px;min-width:0}.survey-chart.tall{height:520px}.survey-note{font-size:10px;color:var(--muted);line-height:1.9;padding:10px 3px 18px}
+.survey-section{margin-top:26px}.survey-heading{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin:0 2px 13px}.survey-heading h2{font-size:20px;margin:0 0 5px;font-weight:700}.survey-heading p{margin:0;color:var(--muted);font-size:11px}.survey-tag{font-size:10px;color:var(--muted);border:1px solid var(--line);border-radius:9px;padding:7px 10px;white-space:nowrap}.survey-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}.survey-chart{height:360px;min-width:0}.survey-chart.tall{height:520px}
 @media(max-width:850px){.survey-heading{align-items:flex-start;flex-direction:column}.survey-tag{white-space:normal}.survey-grid{grid-template-columns:1fr}.survey-chart{height:350px}.survey-chart.tall{height:500px}}
-.note{font-size:9px;color:var(--muted);padding:7px 3px 16px}.toast{display:none;position:fixed;left:20px;bottom:20px;z-index:100;background:#173e50;color:#fff;padding:10px 13px;border-radius:10px;font-size:10px;box-shadow:0 10px 26px rgba(0,0,0,.3)}
+.toast{display:none;position:fixed;left:20px;bottom:20px;z-index:100;background:#173e50;color:#fff;padding:10px 13px;border-radius:10px;font-size:10px;box-shadow:0 10px 26px rgba(0,0,0,.3)}
 .login{position:fixed;inset:0;z-index:200;background:linear-gradient(135deg,#183544,#101820);display:flex;align-items:center;justify-content:center}.loginBox{width:min(390px,92vw);background:#fff;color:#172033;border-radius:20px;padding:27px}.loginBox h2{font-family:'peyda-num',Tahoma,Arial,sans-serif;font-weight:500;font-size:22px}.loginBox input{width:100%;padding:11px;border:1px solid #e4e8ef;border-radius:9px;margin:5px 0 10px}.loginBox label{font-size:10px}.loginBox p{font-size:10px;color:#687386}.err{color:#dc2626;font-size:10px;min-height:18px}.hidden{display:none!important}
 @media(max-width:1050px){.filters{grid-template-columns:repeat(3,1fr)}.kpis{grid-template-columns:repeat(3,1fr)}.header{align-items:flex-start;flex-wrap:wrap}.header-actions{width:100%;justify-content:flex-start}}@media(max-width:650px){.container{padding:11px}.filters,.kpis,.grid{grid-template-columns:1fr}.full{grid-column:auto}.header{padding:18px}.header h1{font-size:20px}.header-actions{flex-wrap:wrap}.data-menu-panel{left:auto;right:0}.grid>div[style*="grid-template-columns:minmax"]{grid-template-columns:1fr!important}}
 </style></head>
@@ -59,8 +59,7 @@ select{width:100%;border:0;background:var(--input);color:var(--ink);border-radiu
 <div id="login" class="login"><div class="loginBox"><h2>ورود به داشبورد</h2><p>تحلیل بازار پلتفرم‌های هوش مصنوعی ایران</p><label>نام کاربری</label><input id="user"><label>رمز عبور</label><input id="pass" type="password"><div id="err" class="err"></div><button class="btn primary" style="width:100%;padding:11px" onclick="login()">ورود</button></div></div>
 <div id="app" class="hidden"><div class="container">
 <div class="header">
-<div class="header-text"><div class="eyebrow">گزارش بازار · آذر ۱۴۰۴ تا مرداد ۱۴۰۵</div>
-<h1>داشبورد تحلیل بازار پلتفرم‌های هوش مصنوعی در ایران</h1>
+<div class="header-text"><h1>داشبورد تحلیل بازار پلتفرم‌های هوش مصنوعی در ایران</h1>
 <p>روند نصب، رشد و سهم بازار پلتفرم‌ها در کافه‌بازار و مایکت</p></div>
 <div class="header-actions">
 <button class="btn theme-btn" onclick="theme()" aria-label="تغییر پوسته" title="تغییر پوسته">◐</button>
@@ -112,19 +111,16 @@ select{width:100%;border:0;background:var(--input);color:var(--ink);border-radiu
 <div class="card"><div class="head"><h2>امتیاز کاربران</h2><div id="erating" class="exports"></div></div><div id="rating" class="small"></div></div>
 </div>
 <section class="survey-section">
-<div class="survey-heading"><div><div class="eyebrow">پیمایش جمعیت ایران</div><h2>آشنایی و استفاده از هوش مصنوعی در ایران</h2><p>نتایج نظرسنجی؛ مستقل از آمار نصب اپلیکیشن‌ها و فروشگاه‌ها</p></div><div class="survey-tag">درصدها طبق فایل منبع · جمعیت‌ها برآوردی</div></div>
+<div class="survey-heading"><div><div class="eyebrow">پیمایش جمعیت ایران</div><h2>آشنایی و استفاده از هوش مصنوعی در ایران</h2></div></div>
 <div class="survey-grid">
 <div class="card"><div class="head"><h2>میزان آشنایی با هوش مصنوعی</h2></div><div id="surveyAwareness" class="survey-chart"></div></div>
 <div class="card"><div class="head"><h2>ابزارهای هوش مصنوعی مورد استفاده</h2></div><div id="surveyTools" class="survey-chart"></div></div>
 <div class="card full"><div class="head"><h2>موارد استفاده از هوش مصنوعی</h2></div><div id="surveyUseCases" class="survey-chart tall"></div></div>
-<div class="card"><div class="head"><h2>توزیع سنی پاسخ‌دهندگان</h2></div><div id="surveyAgeDist" class="survey-chart"></div></div>
 <div class="card"><div class="head"><h2>آشنایی با هوش مصنوعی به تفکیک سن</h2></div><div id="surveyAge" class="survey-chart"></div></div>
 <div class="card"><div class="head"><h2>آشنایی با هوش مصنوعی به تفکیک تحصیلات</h2></div><div id="surveyEducation" class="survey-chart"></div></div>
 <div class="card"><div class="head"><h2>آشنایی با هوش مصنوعی به تفکیک محل سکونت</h2></div><div id="surveyResidence" class="survey-chart"></div></div>
 </div>
-<div class="survey-note">در نمودارهای «ابزارهای مورد استفاده» و «موارد استفاده»، امکان انتخاب چند گزینه وجود دارد؛ بنابراین مجموع درصدها لزوماً ۱۰۰٪ نیست. اعداد جمعیت صرفاً برآورد هستند و نباید به‌عنوان شمارش دقیق افراد تفسیر شوند. مشخصات نمونه‌گیری و حجم نمونه در فایل ارسالی درج نشده است.</div>
 </section>
-<div class="note">منبع داده تاریخی: فایل Excel پروژه. فقط پلتفرم‌های رسمی فهرست پروژه وارد تحلیل شده‌اند؛ مواردی مانند «متیس» حذف شده‌اند. اعداد KPI و نمودارهای اصلی تخمینی با یک رقم اعشار هستند. در «داخلی در برابر خارجی» اعداد کامل فارسی نمایش داده می‌شوند.</div>
 </div></div><div id="toast" class="toast"></div>
 <script>
 let DATA={periods:[],platforms:[],data:[],sources:{}};
@@ -215,11 +211,11 @@ function renderSurveyCharts(){
   const base={animationDuration:350,textStyle:{fontFamily:CHART_FONT,color:textColor},tooltip:{confine:true,textStyle:{fontFamily:CHART_FONT}}};
   function barChart(id,items){
     kill(id);const chart=echarts.init($(id),currentTheme());
-    chart.setOption({...base,grid:{left:12,right:28,top:18,bottom:12,containLabel:true},
+    chart.setOption({...base,grid:{left:14,right:36,top:18,bottom:14,containLabel:true},
       tooltip:{trigger:'axis',axisPointer:{type:'shadow'},confine:true,formatter:ps=>{const d=items[ps[0].dataIndex];return '<b>'+d.name+'</b><br>سهم: '+full(d.pct,1)+'٪'+(d.pop!=null?'<br>برآورد جمعیت: '+full(d.pop/1000000,1)+' میلیون نفر':'')}},
       xAxis:{type:'value',min:0,max:100,axisLabel:{formatter:v=>full(v,0)+'٪',color:mutedColor},splitLine:{lineStyle:{color:document.body.classList.contains('dark')?'#2a3a46':'#e5ebef'}}},
-      yAxis:{type:'category',inverse:true,data:items.map(d=>d.name),axisLabel:{fontSize:10,color:textColor,interval:0,width:180,overflow:'break'},axisTick:{show:false},axisLine:{show:false}},
-      series:[{type:'bar',data:items.map((d,i)=>({value:d.pct,itemStyle:{color:colors[i%colors.length],borderRadius:[0,4,4,0]}})),barMaxWidth:23,label:{show:true,position:'right',formatter:p=>full(p.value,1)+'٪',color:textColor,fontSize:10}}]
+      yAxis:{type:'category',inverse:true,data:items.map(d=>d.name),axisLabel:{fontSize:11,color:textColor,interval:0,width:190,overflow:'break'},axisTick:{show:false},axisLine:{show:false}},
+      series:[{type:'bar',showBackground:true,backgroundStyle:{color:document.body.classList.contains('dark')?'#22313c':'#f0f4f6',borderRadius:[0,6,6,0]},data:items.map((d,i)=>({value:d.pct,itemStyle:{color:colors[i%colors.length],borderRadius:[0,6,6,0]}})),barMaxWidth:26,label:{show:true,position:'right',formatter:p=>full(p.value,1)+'٪',color:textColor,fontSize:11}}]
     });charts[id]=chart;
   }
   barChart('surveyAwareness',[
@@ -240,16 +236,14 @@ function renderSurveyCharts(){
     {name:'مشاوره حقوقی و امور قضایی',pct:12.5,pop:4018738.5},{name:'تحلیل داده',pct:11.7,pop:3761539.236},
     {name:'امور اداری و سازمانی',pct:6.7,pop:2154043.836},{name:'سایر',pct:1.4,pop:450098.712}
   ]);
-  kill('surveyAgeDist');charts.surveyAgeDist=echarts.init($('surveyAgeDist'),currentTheme());
-  charts.surveyAgeDist.setOption({...base,tooltip:{trigger:'item',confine:true,formatter:p=>p.name+'<br>'+full(p.value,1)+'٪<br>برآورد جمعیت: '+full(p.data.pop/1000000,1)+' میلیون نفر'},legend:{bottom:0,textStyle:{color:textColor,fontFamily:CHART_FONT}},series:[{type:'pie',radius:['40%','68%'],center:['50%','45%'],label:{formatter:p=>p.name+'\n'+full(p.value,1)+'٪',fontSize:10,color:textColor},data:[{name:'۱۵ تا ۲۹ سال',value:28.2,pop:24569848.404,itemStyle:{color:'#176b87'}},{name:'۳۰ تا ۴۹ سال',value:45.7,pop:39817094.754,itemStyle:{color:'#18a6a6'}},{name:'۵۰ سال و بیشتر',value:26.1,pop:22740178.842,itemStyle:{color:'#d69a24'}}]}]});
   function grouped(id,groups,values){
     kill(id);const chart=echarts.init($(id),currentTheme());
     chart.setOption({...base,tooltip:{trigger:'axis',axisPointer:{type:'shadow'},confine:true,formatter:ps=>'<b>'+ps[0].axisValue+'</b><br>'+ps.map(p=>p.marker+p.seriesName+': '+full(p.value,1)+'٪').join('<br>')},
-      legend:{type:'scroll',bottom:0,textStyle:{fontFamily:CHART_FONT,color:textColor}},
-      grid:{left:10,right:18,top:18,bottom:65,containLabel:true},
-      xAxis:{type:'category',data:groups,axisLabel:{fontSize:10,interval:0,color:textColor}},
-      yAxis:{type:'value',min:0,max:60,axisLabel:{formatter:v=>full(v,0)+'٪',color:mutedColor},splitLine:{lineStyle:{color:document.body.classList.contains('dark')?'#2a3a46':'#e5ebef'}}},
-      series:cats.map((name,i)=>({name,type:'bar',barMaxWidth:18,itemStyle:{color:colors[i]},data:values[i],label:{show:false}}))
+      legend:{type:'scroll',bottom:2,left:8,right:8,textStyle:{fontFamily:CHART_FONT,color:textColor},itemWidth:12,itemHeight:8},
+      grid:{left:18,right:20,top:18,bottom:64,containLabel:true},
+      xAxis:{type:'value',min:0,max:100,axisLabel:{formatter:v=>full(v,0)+'٪',color:mutedColor},splitLine:{lineStyle:{color:document.body.classList.contains('dark')?'#2a3a46':'#e5ebef'}}},
+      yAxis:{type:'category',inverse:true,data:groups,axisLabel:{fontSize:11,color:textColor,interval:0},axisTick:{show:false},axisLine:{show:false}},
+      series:cats.map((name,i)=>({name,type:'bar',stack:'awareness',barMaxWidth:40,itemStyle:{color:colors[i],borderRadius:3},emphasis:{focus:'series'},data:values[i],label:{show:true,position:'inside',formatter:p=>Number(p.value)>=7?full(p.value,0)+'٪':'',color:'#fff',fontSize:10}}))
     });charts[id]=chart;
   }
   grouped('surveyAge',['۱۵ تا ۲۹ سال','۳۰ تا ۴۹ سال','۵۰ سال و بیشتر'],[[22.9,38.9,53.8],[20.2,26.3,29.4],[43.2,27.8,15.9],[13.7,7.0,3.3]]);
