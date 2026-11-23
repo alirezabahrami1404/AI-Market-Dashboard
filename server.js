@@ -30,37 +30,13 @@ function saveJSON(filePath, obj) {
   fs.renameSync(tmpPath, filePath);
 }
 
-// اعمال اصلاحات داده‌ای شناخته‌شده روی دیتابیس محلی (که در Git نادیده گرفته می‌شود).
-function correctDatabase(data) {
-  const chatgpt = data.data.find(d =>
-    String(d.name || '').toLowerCase() === 'chatgpt' && Number(d.period_idx) === 7
-  );
-  if (chatgpt) {
-    chatgpt.bazaar = 10000000;
-    chatgpt.total = chatgpt.bazaar + (chatgpt.myket == null ? 0 : Number(chatgpt.myket));
-  }
-  // سهم هر پلتفرم از مجموع همان دوره و همان مارکت دوباره محاسبه می‌شود.
-  data.periods.forEach((period, idx) => {
-    const rows = data.data.filter(d => Number(d.period_idx) === idx);
-    ['total', 'bazaar', 'myket'].forEach(metric => {
-      const denominator = rows.reduce((sum, d) => sum + (d[metric] == null ? 0 : Number(d[metric])), 0);
-      const shareKey = metric + '_share';
-      rows.forEach(d => {
-        d[shareKey] = d[metric] == null || denominator === 0 ? null : Number(d[metric]) / denominator;
-      });
-    });
-  });
-  return data;
-}
-
 // ---------------------------------------------------------------------------
 // API
 // ---------------------------------------------------------------------------
 
 app.get('/api/data', (req, res) => {
   try {
-    const data = correctDatabase(loadJSON(DB_PATH));
-    saveJSON(DB_PATH, data);
+    const data = loadJSON(DB_PATH);
     res.json(data);
   } catch (e) {
     console.error('[GET /api/data]', e);
