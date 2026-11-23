@@ -132,25 +132,42 @@ const APP_BASE=(pathname=>{
   return '';
 })(window.location.pathname);
 const api=path=>APP_BASE+path;
-// محاسبات معتبر: داده‌ی ناموجود را صفر فرض نکن؛ نصب تجمعی نزولی را خطای داده بدان.
+// محاسبات تجمعی: هر بار مقادیر derived از نو ساخته می‌شوند تا stale نمانند.
 function computeGrowth(){
   const byKey=new Map(DATA.data.map(d=>[String(d.platform)+'|'+Number(d.period_idx),d]));
   DATA.data.forEach(d=>{
+    ['total','bazaar','myket'].forEach(k=>{d[k+'_point']=null;d[k+'_growth']=null;});
+  });
+  DATA.data.forEach(d=>{
     const prev=byKey.get(String(d.platform)+'|'+(Number(d.period_idx)-1));
     ['total','bazaar','myket'].forEach(k=>{
-      const pointKey=k+'_point', growthKey=k+'_growth';
-      const current=d[k], previous=prev?.[k];
-      if(Number(d.period_idx)===0){d[growthKey]=null;return;}
-      if(current==null||previous==null||!Number.isFinite(Number(current))||!Number.isFinite(Number(previous))||Number(previous)<=0||Number(current)<Number(previous)){
-        d[growthKey]=null;
-        return;
-      }
-      const point=Number(current)-Number(previous);
-      d[pointKey]=point>=0?point:null;
-      // نمودار رشد صفر را عمداً نمایش نمی‌دهد.
-      d[growthKey]=point>0?point/Number(previous):null;
+      const current=parseNum(d[k]), previous=parseNum(prev?.[k]);
+      if(Number(d.period_idx)===0||current==null||previous==null||previous<=0||current<previous)return;
+      const point=current-previous;
+      d[k+'_point']=point;
+      d[k+'_growth']=point>0?point/previous:null;
     });
   });
+}
+// افت نصب تجمعی را برای داده ورودی تشخیص بده.
+function cumulativeIssues(records, periods){
+  const issues=[];
+  const lookup=new Map(records.map(d=>[String(d.platform)+'|'+Number(d.period_idx),d]));
+  records.forEach(d=>{
+    const idx=Number(d.period_idx), prev=lookup.get(String(d.platform)+'|'+(idx-1));
+    if(!prev||idx<=0)return;
+    ['bazaar','myket','total'].forEach(k=>{
+      const now=parseNum(d[k]),before=parseNum(prev[k]);
+      if(now!=null&&before!=null&&now<before)issues.push({platform:d.platform,period:periods[idx],field:k,current:now,previous:before});
+    });
+  });
+  return issues;
+}
+function warnCumulativeIssues(records, periods, action){
+  const issues=cumulativeIssues(records,periods);
+  if(!issues.length)return '';
+  const names=[...new Set(issues.map(x=>x.platform))].slice(0,5).join('، ');
+  return '⚠️ '+action+': افت نصب تجمعی در '+issues.length+' مورد ('+names+(issues.length>5?' و...':'')+'). مقادیر مشکوک را بررسی کن؛ رشد این موارد محاسبه نمی‌شود.';
 }
 
 const FA_DIGITS='۰۱۲۳۴۵۶۷۸۹';
@@ -314,6 +331,16 @@ function submitMonthly(){
     vals[p][k]=v===''?null:parseNum(v);
   });
   let any=false;
+  // ورودی ماه جدید نباید نصب تجمعی کمتر از دوره قبل ثبت کند.
+  const decreasing=[];
+  DATA.platforms.forEach(p=>{
+    const v=vals[p.id]||{}, prev=DATA.data.find(d=>d.platform===p.id&&d.period_idx===idx-1);
+    const current={bazaar:v.bnum,myket:v.mnum};
+    ['bazaar','myket'].forEach(k=>{
+      if(current[k]!=null&&prev&&prev[k]!=null&&current[k]<prev[k])decreasing.push(p.name+' ('+(k==='bazaar'?'بازار':'مایکت')+')');
+    });
+  });
+  if(decreasing.length){$('monthlyErr').textContent='مقادیر نصب تجمعی کاهش یافته‌اند: '+decreasing.slice(0,6).join('، ')+(decreasing.length>6?' و...':'')+'. مقدار را اصلاح کن یا از مسیر بارگذاری JSON پس از بررسی استفاده کن.';return;}
   DATA.platforms.forEach(p=>{
     let v=vals[p.id]||{};
     let bazaar=v.bnum!=null?v.bnum:null, myket=v.mnum!=null?v.mnum:null;
@@ -347,11 +374,13 @@ function updateData(){$('updFile').click()}
 function importAnyFile(parsed){
   if(parsed&&Array.isArray(parsed.periods)&&Array.isArray(parsed.platforms)&&Array.isArray(parsed.data)){
     DATA.periods=parsed.periods;DATA.platforms=parsed.platforms;DATA.data=parsed.data;DATA.sources=parsed.sources||DATA.sources||{};
+    const validationMsg=warnCumulativeIssues(DATA.data,DATA.periods,'فایل واردشده');
     computeGrowth();
     selected=new Set(DATA.platforms.map(p=>p.id));
     $('period').innerHTML='';DATA.periods.forEach((p,i)=>$('period').add(new Option(p,i)));$('period').value=DATA.periods.length-1;
     buildChecks();render();
     persistData('داده‌ها با موفقیت از فایل جدید به‌روزرسانی و روی سرور ذخیره شدند.');
+    if(validationMsg)toast(validationMsg);
     return;
   }
   if(parsed&&typeof parsed.label==='string'&&typeof parsed.values==='object'){
