@@ -169,6 +169,16 @@ function warnCumulativeIssues(records, periods, action){
   const names=[...new Set(issues.map(x=>x.platform))].slice(0,5).join('، ');
   return '⚠️ '+action+': افت نصب تجمعی در '+issues.length+' مورد ('+names+(issues.length>5?' و...':'')+'). مقادیر مشکوک را بررسی کن؛ رشد این موارد محاسبه نمی‌شود.';
 }
+// سهم‌ها را از مقادیر خام بازسازی می‌کنیم تا سهم‌های قدیمی/اشتباه باقی نمانند.
+function computeShares(){
+  DATA.periods.forEach((period,idx)=>{
+    const rows=DATA.data.filter(d=>Number(d.period_idx)===idx);
+    ['total','bazaar','myket'].forEach(metric=>{
+      const sum=rows.reduce((acc,d)=>acc+(parseNum(d[metric])??0),0);
+      rows.forEach(d=>{d[metric+'_share']=d[metric]==null||sum===0?null:Number(d[metric])/sum;});
+    });
+  });
+}
 
 const FA_DIGITS='۰۱۲۳۴۵۶۷۸۹';
 const fa=s=>String(s).replace(/\d/g,d=>FA_DIGITS[d]);
@@ -344,7 +354,7 @@ function submitMonthly(){
   DATA.platforms.forEach(p=>{
     let v=vals[p.id]||{};
     let bazaar=v.bnum!=null?v.bnum:null, myket=v.mnum!=null?v.mnum:null;
-    let total=(bazaar!=null||myket!=null)?(bazaar||0)+(myket||0):null;
+    let total=(bazaar!=null&&myket!=null)?bazaar+myket:null;
     let rating=null;
     if(v.brate!=null&&v.mrate!=null&&(bazaar||0)+(myket||0)>0)rating=((v.brate*(bazaar||0))+(v.mrate*(myket||0)))/((bazaar||0)+(myket||0));
     else if(v.brate!=null)rating=v.brate; else if(v.mrate!=null)rating=v.mrate;
@@ -365,6 +375,7 @@ function submitMonthly(){
     DATA.data.filter(d=>d.period_idx===idx).forEach(d=>{d[field+'_share']=(d[field]!=null&&tot)?d[field]/tot:(d[field]!=null?0:null)});
   });
   DATA.periods.push(label);
+  computeShares();
   computeGrowth();
   $('period').add(new Option(label,idx));$('period').value=idx;
   closeMonthly();render();
@@ -375,6 +386,7 @@ function importAnyFile(parsed){
   if(parsed&&Array.isArray(parsed.periods)&&Array.isArray(parsed.platforms)&&Array.isArray(parsed.data)){
     DATA.periods=parsed.periods;DATA.platforms=parsed.platforms;DATA.data=parsed.data;DATA.sources=parsed.sources||DATA.sources||{};
     const validationMsg=warnCumulativeIssues(DATA.data,DATA.periods,'فایل واردشده');
+    computeShares();
     computeGrowth();
     selected=new Set(DATA.platforms.map(p=>p.id));
     $('period').innerHTML='';DATA.periods.forEach((p,i)=>$('period').add(new Option(p,i)));$('period').value=DATA.periods.length-1;
@@ -418,6 +430,7 @@ async function loadDataAndInit(){
     if(!r.ok){let b=await r.json().catch(()=>({}));throw new Error(b.error||('خطای سرور: '+r.status))}
     DATA=await r.json();
     if(!Array.isArray(DATA.periods)||!Array.isArray(DATA.platforms)||!Array.isArray(DATA.data))throw new Error('پاسخ سرور معتبر نبود.');
+    computeShares();
     computeShares();
     computeGrowth();
     selected=new Set(DATA.platforms.map(p=>p.id));
