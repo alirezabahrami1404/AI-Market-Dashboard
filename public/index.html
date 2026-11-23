@@ -418,6 +418,7 @@ async function loadDataAndInit(){
     if(!r.ok){let b=await r.json().catch(()=>({}));throw new Error(b.error||('خطای سرور: '+r.status))}
     DATA=await r.json();
     if(!Array.isArray(DATA.periods)||!Array.isArray(DATA.platforms)||!Array.isArray(DATA.data))throw new Error('پاسخ سرور معتبر نبود.');
+    computeShares();
     computeGrowth();
     selected=new Set(DATA.platforms.map(p=>p.id));
     init();
